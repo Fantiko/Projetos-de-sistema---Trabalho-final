@@ -7,8 +7,24 @@
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>22</maven.compiler.source>
-        <maven.compiler.target>22</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>sistemalogin.trabalhofinal.TrabalhoFinal</exec.mainClass>
     </properties>
+
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.github.claytonfraga</groupId>
+            <artifactId>validadorsenha</artifactId>
+            <version>master-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 </project>
