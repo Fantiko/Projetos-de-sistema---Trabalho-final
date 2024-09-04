@@ -15,6 +15,9 @@ public class Sistema {
     public List<Observer> getTelas() {
         return telas;
     }
+    public void addTela(Observer tela){
+        telas.add(tela);
+    }
 
 
     private void notificarTelas() {
