@@ -4,12 +4,18 @@ import sistemalogin.trabalhofinal.View.Observer;
 
 import java.util.ArrayList;
 import java.util.List;
+import sistemalogin.trabalhofinal.View.TelaCadastroUsuario;
 
 public class Sistema {
     private List<Observer> telas;
+    
+    public TelaCadastroUsuario telacadastrousuario;
 
     public Sistema() {
+        
         this.telas = new ArrayList<>();
+        this.telacadastrousuario = new TelaCadastroUsuario();
+        adicionarObserver(this.telacadastrousuario);
     }
 
     public List<Observer> getTelas() {
@@ -24,6 +30,10 @@ public class Sistema {
         for (Observer observer : telas) {
             observer.atualizar();
         }
+    }
+    
+    public void adicionarObserver(Observer observer) {
+        telas.add(observer);
     }
 
 }

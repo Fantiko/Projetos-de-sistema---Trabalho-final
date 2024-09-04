@@ -4,6 +4,9 @@
 
 package sistemalogin.trabalhofinal;
 
+import sistemalogin.trabalhofinal.Presenter.Sistema;
+import sistemalogin.trabalhofinal.View.TelaPrincipal;
+
 /**
  *
  * @author kaios
@@ -11,7 +14,9 @@ package sistemalogin.trabalhofinal;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Sistema sistema = new Sistema();
+        TelaPrincipal telaprincipal = new TelaPrincipal();
+        telaprincipal.jDesktopPane1Init(sistema);
 
     }
 }

@@ -3,20 +3,36 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/MDIApplication.java to edit this template
  */
 package sistemalogin.trabalhofinal.View;
-
+import sistemalogin.trabalhofinal.View.Observer;
+import sistemalogin.trabalhofinal.Presenter.Sistema;
+import sistemalogin.trabalhofinal.View.TelaCadastroUsuario;
 /**
  *
  * @author Ruan Ribeiro
  */
-public class TelaPrincipal extends javax.swing.JFrame {
-
+public class TelaPrincipal extends javax.swing.JFrame implements Observer{
+    public Sistema sistema; 
     /**
      * Creates new form TelaPrincipal
      */
     public TelaPrincipal() {
         initComponents();
     }
-
+    @Override
+    public void atualizar(){}
+    
+    public void jDesktopPane1Init(Sistema sistema){
+    this.sistema = sistema;
+    sistema.adicionarObserver(this);
+    sistema.adicionarObserver(sistema.telacadastrousuario);
+    sistema.addTela(sistema.telacadastrousuario);
+    jDesktopPane1.add(sistema.telacadastrousuario);
+    setVisible(true);
+    
+    
+    
+    
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -254,5 +270,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JLabel tipoUsuario;
     // End of variables declaration//GEN-END:variables
+
 
 }
