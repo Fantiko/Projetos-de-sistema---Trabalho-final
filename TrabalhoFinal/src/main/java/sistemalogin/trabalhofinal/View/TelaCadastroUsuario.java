@@ -34,7 +34,7 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements O
         senhaUsuario = new javax.swing.JTextField();
         salvarUsuario = new javax.swing.JButton();
 
-        setTitle("CADASTRO DE USUÁRIO");
+        setTitle("Cadastro de Usuário");
 
         jLabel2.setText("NOME:");
 

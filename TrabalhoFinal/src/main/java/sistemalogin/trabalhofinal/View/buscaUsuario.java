@@ -33,7 +33,7 @@ public class buscaUsuario extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaBusca = new javax.swing.JTable();
         btnFechar = new javax.swing.JButton();
-        btnVisualizar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
         btnNovo = new javax.swing.JButton();
 
         setTitle("Buscar por Usuários");
@@ -72,7 +72,12 @@ public class buscaUsuario extends javax.swing.JInternalFrame {
 
         btnFechar.setText("Fechar");
 
-        btnVisualizar.setText("Visualizar");
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnNovo.setText("Novo");
 
@@ -95,7 +100,7 @@ public class buscaUsuario extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnNovo)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnVisualizar)
+                                .addComponent(btnExcluir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnFechar)))
                         .addGap(0, 87, Short.MAX_VALUE)))
@@ -114,7 +119,7 @@ public class buscaUsuario extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFechar)
-                    .addComponent(btnVisualizar)
+                    .addComponent(btnExcluir)
                     .addComponent(btnNovo))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -126,11 +131,15 @@ public class buscaUsuario extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_selecaoBuscaActionPerformed
 
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnFechar;
     private javax.swing.JButton btnNovo;
-    private javax.swing.JButton btnVisualizar;
     private javax.swing.JButton buscaUsuario;
     private javax.swing.JScrollPane campoBusca;
     private javax.swing.JScrollPane jScrollPane1;
