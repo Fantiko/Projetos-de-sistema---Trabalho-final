@@ -28,7 +28,6 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements O
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         nomeUsuario = new javax.swing.JTextField();
@@ -36,8 +35,6 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements O
         salvarUsuario = new javax.swing.JButton();
 
         setTitle("CADASTRO DE USUÁRIO");
-
-        jLabel1.setText("DIGITE SUAS INFORMAÇÕES PARA SE CADASTRAR");
 
         jLabel2.setText("NOME:");
 
@@ -49,7 +46,12 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements O
             }
         });
 
-        salvarUsuario.setText("Salvar");
+        salvarUsuario.setText("Cadastrar");
+        salvarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarUsuarioActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -57,27 +59,23 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements O
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(salvarUsuario)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(14, 14, 14)
-                                .addComponent(senhaUsuario))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(nomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(12, 12, 12))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(salvarUsuario)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(14, 14, 14)
+                            .addComponent(senhaUsuario))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(18, 18, 18)
+                            .addComponent(nomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(nomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -97,9 +95,12 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements O
         // TODO add your handling code here:
     }//GEN-LAST:event_nomeUsuarioActionPerformed
 
+    private void salvarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_salvarUsuarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField nomeUsuario;
