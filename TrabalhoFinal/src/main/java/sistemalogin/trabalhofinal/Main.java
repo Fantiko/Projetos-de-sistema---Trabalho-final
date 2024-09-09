@@ -14,9 +14,7 @@ import sistemalogin.trabalhofinal.View.TelaPrincipal;
 public class Main {
 
     public static void main(String[] args) {
+        
         Sistema sistema = new Sistema();
-        TelaPrincipal telaprincipal = new TelaPrincipal();
-        telaprincipal.jDesktopPane1Init(sistema);
-
     }
 }

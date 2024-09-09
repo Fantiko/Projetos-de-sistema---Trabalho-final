@@ -5,18 +5,20 @@ import sistemalogin.trabalhofinal.View.Observer;
 import java.util.ArrayList;
 import java.util.List;
 import sistemalogin.trabalhofinal.View.TelaCadastroUsuario;
+import sistemalogin.trabalhofinal.View.TelaPrincipal;
 
-public class Sistema {
-    private List<Observer> telas;
-    
-    public TelaCadastroUsuario telacadastrousuario;
+public class Sistema 
+{
+    private ArrayList<Observer> telas;
+    public TelaPrincipal telaPrincipal;
 
-    public Sistema() {
-        
-        this.telas = new ArrayList<>();
-        this.telacadastrousuario = new TelaCadastroUsuario();
-        adicionarObserver(this.telacadastrousuario);
+    public Sistema() 
+    {
+        telas = new ArrayList<Observer>();
+        telaPrincipal = new TelaPrincipal(this);
+        addTela(telaPrincipal);
     }
+    
 
     public List<Observer> getTelas() {
         return telas;

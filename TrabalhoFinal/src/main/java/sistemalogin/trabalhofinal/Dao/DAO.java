@@ -46,7 +46,7 @@ public class DAO {
 
     }
 
-    public void cadastrarCliente(Usuario usuario){
+    /*public void cadastrarCliente(Usuario usuario){
         Connection connection = Conexao.getInstance().abrirConexao();
 
         String query = CADASTRAR_CLIENTE;
@@ -57,7 +57,7 @@ public class DAO {
 
 
 
-    }
+    }*/
 
 
 
