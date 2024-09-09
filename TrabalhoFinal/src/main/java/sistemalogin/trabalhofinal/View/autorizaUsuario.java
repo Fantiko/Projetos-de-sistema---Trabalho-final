@@ -18,7 +18,7 @@ public class autorizaUsuario extends javax.swing.JInternalFrame {
     public autorizaUsuario() {
         initComponents();
         this.sistema = sistema;
-        setVisible(true);
+        
     }
 
     /**

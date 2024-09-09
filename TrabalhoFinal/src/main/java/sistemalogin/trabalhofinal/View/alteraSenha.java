@@ -5,20 +5,22 @@
 package sistemalogin.trabalhofinal.View;
 
 import sistemalogin.trabalhofinal.Presenter.Sistema;
-
+    
+    
 /**
  *
  * @author Ruan Ribeiro
  */
 public class alteraSenha extends javax.swing.JInternalFrame {
     Sistema sistema;
+   
     /**
      * Creates new form alteraSenha
      */
     public alteraSenha() {
         initComponents();
         this.sistema = sistema;
-        setVisible(true);
+        
     }
 
     /**

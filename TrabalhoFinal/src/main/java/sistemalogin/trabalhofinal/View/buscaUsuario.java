@@ -18,7 +18,7 @@ public class buscaUsuario extends javax.swing.JInternalFrame {
     public buscaUsuario() {
         initComponents();
         this.sistema = sistema;
-        setVisible(true);
+     
     }
 
     /**

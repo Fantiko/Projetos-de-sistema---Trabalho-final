@@ -18,7 +18,7 @@ public class enviarMensagem extends javax.swing.JInternalFrame {
     public enviarMensagem() {
         initComponents();
         this.sistema = sistema;
-        setVisible(true);
+    
     }
 
     /**

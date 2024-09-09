@@ -34,7 +34,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         enviarMensagem = new enviarMensagem();
         mensagem = new mensagem();
         telaLogin = new telaLogin(telaCadastroUsuario);
-        visualizaMensagem = new visualizaMensagem();
+        visualizaMensagem = new visualizaMensagem(mensagem);
         
         addComponentsToMainPane();
         setVisible(true);
@@ -68,19 +68,14 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         tipoUsuario = new javax.swing.JLabel();
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
-        openMenuItem = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
-        saveAsMenuItem = new javax.swing.JMenuItem();
-        exitMenuItem = new javax.swing.JMenuItem();
-        editMenu = new javax.swing.JMenu();
-        cutMenuItem = new javax.swing.JMenuItem();
-        copyMenuItem = new javax.swing.JMenuItem();
-        pasteMenuItem = new javax.swing.JMenuItem();
-        deleteMenuItem = new javax.swing.JMenuItem();
-        helpMenu = new javax.swing.JMenu();
-        contentMenuItem = new javax.swing.JMenuItem();
-        aboutMenuItem = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        abreTelaSenha = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        abreBuscaUsuario = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        abreAutorizaUsuario = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        abreEnviarMensagem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SISTEMA");
@@ -141,66 +136,59 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
 
         menuBar.setName("SISTEMA"); // NOI18N
 
-        fileMenu.setMnemonic('f');
-        fileMenu.setText("File");
-
-        openMenuItem.setMnemonic('o');
-        openMenuItem.setText("Open");
-        fileMenu.add(openMenuItem);
-
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Save");
-        fileMenu.add(saveMenuItem);
-
-        saveAsMenuItem.setMnemonic('a');
-        saveAsMenuItem.setText("Save As ...");
-        saveAsMenuItem.setDisplayedMnemonicIndex(5);
-        fileMenu.add(saveAsMenuItem);
-
-        exitMenuItem.setMnemonic('x');
-        exitMenuItem.setText("Exit");
-        exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        jMenu2.setMnemonic('f');
+        jMenu2.setText("Trocar Senha");
+        jMenu2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitMenuItemActionPerformed(evt);
+                jMenu2ActionPerformed(evt);
             }
         });
-        fileMenu.add(exitMenuItem);
 
-        menuBar.add(fileMenu);
+        abreTelaSenha.setText("Trocar Senha");
+        abreTelaSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abreTelaSenhaActionPerformed(evt);
+            }
+        });
+        jMenu2.add(abreTelaSenha);
 
-        editMenu.setMnemonic('e');
-        editMenu.setText("Edit");
+        menuBar.add(jMenu2);
 
-        cutMenuItem.setMnemonic('t');
-        cutMenuItem.setText("Cut");
-        editMenu.add(cutMenuItem);
+        jMenu3.setText("Buscar Usuário");
 
-        copyMenuItem.setMnemonic('y');
-        copyMenuItem.setText("Copy");
-        editMenu.add(copyMenuItem);
+        abreBuscaUsuario.setText("Buscar Usuário");
+        abreBuscaUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abreBuscaUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu3.add(abreBuscaUsuario);
 
-        pasteMenuItem.setMnemonic('p');
-        pasteMenuItem.setText("Paste");
-        editMenu.add(pasteMenuItem);
+        menuBar.add(jMenu3);
 
-        deleteMenuItem.setMnemonic('d');
-        deleteMenuItem.setText("Delete");
-        editMenu.add(deleteMenuItem);
+        jMenu4.setText("Autorizar Usuário");
 
-        menuBar.add(editMenu);
+        abreAutorizaUsuario.setText("Autorizar Usuário");
+        abreAutorizaUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abreAutorizaUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu4.add(abreAutorizaUsuario);
 
-        helpMenu.setMnemonic('h');
-        helpMenu.setText("Help");
+        menuBar.add(jMenu4);
 
-        contentMenuItem.setMnemonic('c');
-        contentMenuItem.setText("Contents");
-        helpMenu.add(contentMenuItem);
+        jMenu1.setText("Enviar Mensagem");
 
-        aboutMenuItem.setMnemonic('a');
-        aboutMenuItem.setText("About");
-        helpMenu.add(aboutMenuItem);
+        abreEnviarMensagem.setText("Enviar Mensagem");
+        abreEnviarMensagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abreEnviarMensagemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(abreEnviarMensagem);
 
-        menuBar.add(helpMenu);
+        menuBar.add(jMenu1);
 
         setJMenuBar(menuBar);
 
@@ -222,13 +210,29 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_exitMenuItemActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         visualizaMensagem.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu2ActionPerformed
+        alterarSenha.setVisible(true);
+    }//GEN-LAST:event_jMenu2ActionPerformed
+
+    private void abreTelaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abreTelaSenhaActionPerformed
+        alterarSenha.setVisible(true);
+    }//GEN-LAST:event_abreTelaSenhaActionPerformed
+
+    private void abreBuscaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abreBuscaUsuarioActionPerformed
+        buscaUsuario.setVisible(true);
+    }//GEN-LAST:event_abreBuscaUsuarioActionPerformed
+
+    private void abreAutorizaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abreAutorizaUsuarioActionPerformed
+        autorizaUsuario.setVisible(true);
+    }//GEN-LAST:event_abreAutorizaUsuarioActionPerformed
+
+    private void abreEnviarMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abreEnviarMensagemActionPerformed
+        enviarMensagem.setVisible(true);
+    }//GEN-LAST:event_abreEnviarMensagemActionPerformed
 
  
     public static void main(String args[]) {
@@ -264,26 +268,21 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem aboutMenuItem;
-    private javax.swing.JMenuItem contentMenuItem;
-    private javax.swing.JMenuItem copyMenuItem;
-    private javax.swing.JMenuItem cutMenuItem;
-    private javax.swing.JMenuItem deleteMenuItem;
+    private javax.swing.JMenuItem abreAutorizaUsuario;
+    private javax.swing.JMenuItem abreBuscaUsuario;
+    private javax.swing.JMenuItem abreEnviarMensagem;
+    private javax.swing.JMenuItem abreTelaSenha;
     private javax.swing.JDesktopPane desktopPane;
-    private javax.swing.JMenu editMenu;
-    private javax.swing.JMenuItem exitMenuItem;
-    private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu helpMenu;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JLabel nomeUsuario;
-    private javax.swing.JMenuItem openMenuItem;
-    private javax.swing.JMenuItem pasteMenuItem;
-    private javax.swing.JMenuItem saveAsMenuItem;
-    private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JLabel tipoUsuario;
     // End of variables declaration//GEN-END:variables
 

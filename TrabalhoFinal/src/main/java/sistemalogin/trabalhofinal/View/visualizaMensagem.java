@@ -12,13 +12,13 @@ import sistemalogin.trabalhofinal.Presenter.Sistema;
  */
 public class visualizaMensagem extends javax.swing.JInternalFrame {
     Sistema sistema;
-    /**
-     * Creates new form visualizaMensagem
-     */
-    public visualizaMensagem() {
+    mensagem mensagem;
+    
+    public visualizaMensagem(mensagem novaMensagem) {
         initComponents();
         this.sistema = sistema;
-        
+        mensagem = new mensagem();
+        mensagem = novaMensagem;
     }
 
     /**
@@ -58,6 +58,11 @@ public class visualizaMensagem extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tabelaMensagem);
 
         lerMensagem.setText("Ler");
+        lerMensagem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lerMensagemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,6 +89,10 @@ public class visualizaMensagem extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lerMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lerMensagemActionPerformed
+        mensagem.setVisible(true);
+    }//GEN-LAST:event_lerMensagemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
