@@ -14,7 +14,7 @@ import sistemalogin.trabalhofinal.View.TelaCadastroUsuario;
 public class TelaPrincipal extends javax.swing.JFrame implements Observer{
     
     private Sistema sistema; 
-    private TelaCadastroUsuario telaCadastroUsuario;
+    public TelaCadastroUsuario telaCadastroUsuario;
     private alteraSenha alterarSenha;
     private autorizaUsuario autorizaUsuario;
     private buscaUsuario buscaUsuario;
@@ -33,7 +33,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         buscaUsuario = new buscaUsuario();
         enviarMensagem = new enviarMensagem();
         mensagem = new mensagem();
-        telaLogin = new telaLogin();
+        telaLogin = new telaLogin(telaCadastroUsuario);
         visualizaMensagem = new visualizaMensagem();
         
         addComponentsToMainPane();

@@ -4,17 +4,21 @@
  */
 package sistemalogin.trabalhofinal.View;
 
+import sistemalogin.trabalhofinal.Presenter.Sistema;
+
 /**
  *
  * @author Ruan Ribeiro
  */
 public class mensagem extends javax.swing.JInternalFrame {
-
+    Sistema sistema;
     /**
      * Creates new form mensagem
      */
     public mensagem() {
         initComponents();
+        this.sistema = sistema;
+        setVisible(true);
     }
 
     /**
@@ -70,7 +74,7 @@ public class mensagem extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(tituloMensagem))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

@@ -4,17 +4,21 @@
  */
 package sistemalogin.trabalhofinal.View;
 
+import sistemalogin.trabalhofinal.Presenter.Sistema;
+
 /**
  *
  * @author Ruan Ribeiro
  */
 public class visualizaMensagem extends javax.swing.JInternalFrame {
-
+    Sistema sistema;
     /**
      * Creates new form visualizaMensagem
      */
     public visualizaMensagem() {
         initComponents();
+        this.sistema = sistema;
+        
     }
 
     /**

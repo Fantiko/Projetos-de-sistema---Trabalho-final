@@ -5,17 +5,22 @@
 package sistemalogin.trabalhofinal.View;
 import sistemalogin.trabalhofinal.Presenter.Sistema;
 import sistemalogin.trabalhofinal.View.Observer;
+import sistemalogin.trabalhofinal.View.TelaPrincipal;
+
 /**
  *
  * @author Ruan Ribeiro
  */
 public class telaLogin extends javax.swing.JInternalFrame implements Observer{
     Sistema sistema;
+    TelaCadastroUsuario telaCadastroUsuario;
     
-    public telaLogin() {
-        this.sistema = sistema;
+    public telaLogin(TelaCadastroUsuario novaTela) {
         initComponents();
+        this.sistema = sistema;
         setVisible(true);
+        telaCadastroUsuario = new TelaCadastroUsuario();
+        telaCadastroUsuario = novaTela;
     }
     @Override
     public void atualizar(){}
@@ -105,12 +110,12 @@ public class telaLogin extends javax.swing.JInternalFrame implements Observer{
     }//GEN-LAST:event_nomeLoginActionPerformed
 
     private void acessoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessoUsuarioActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_acessoUsuarioActionPerformed
 
     private void novoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoUsuarioActionPerformed
-        TelaCadastroUsuario telacadastro = new TelaCadastroUsuario();
-        telacadastro.setVisible(true);
+
+        telaCadastroUsuario.setVisible(true);
     }//GEN-LAST:event_novoUsuarioActionPerformed
 
 

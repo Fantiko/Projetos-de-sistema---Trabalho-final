@@ -4,17 +4,21 @@
  */
 package sistemalogin.trabalhofinal.View;
 
+import sistemalogin.trabalhofinal.Presenter.Sistema;
+
 /**
  *
  * @author Ruan Ribeiro
  */
 public class enviarMensagem extends javax.swing.JInternalFrame {
-
+    Sistema sistema;
     /**
      * Creates new form enviarMensagem
      */
     public enviarMensagem() {
         initComponents();
+        this.sistema = sistema;
+        setVisible(true);
     }
 
     /**

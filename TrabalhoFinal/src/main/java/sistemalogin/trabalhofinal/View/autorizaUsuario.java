@@ -4,17 +4,21 @@
  */
 package sistemalogin.trabalhofinal.View;
 
+import sistemalogin.trabalhofinal.Presenter.Sistema;
+
 /**
  *
  * @author Ruan Ribeiro
  */
 public class autorizaUsuario extends javax.swing.JInternalFrame {
-
+    Sistema sistema;
     /**
      * Creates new form liberaAcesso
      */
     public autorizaUsuario() {
         initComponents();
+        this.sistema = sistema;
+        setVisible(true);
     }
 
     /**

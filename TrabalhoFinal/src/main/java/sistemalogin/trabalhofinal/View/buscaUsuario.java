@@ -4,17 +4,21 @@
  */
 package sistemalogin.trabalhofinal.View;
 
+import sistemalogin.trabalhofinal.Presenter.Sistema;
+
 /**
  *
  * @author Ruan Ribeiro
  */
 public class buscaUsuario extends javax.swing.JInternalFrame {
-
+    Sistema sistema;
     /**
      * Creates new form buscaUsuario
      */
     public buscaUsuario() {
         initComponents();
+        this.sistema = sistema;
+        setVisible(true);
     }
 
     /**

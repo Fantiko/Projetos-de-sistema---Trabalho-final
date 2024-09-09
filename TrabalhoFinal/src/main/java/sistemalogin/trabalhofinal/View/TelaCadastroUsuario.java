@@ -3,18 +3,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package sistemalogin.trabalhofinal.View;
+import sistemalogin.trabalhofinal.Presenter.Sistema;
 import sistemalogin.trabalhofinal.View.Observer;
 /**
  *
  * @author Ruan Ribeiro
  */
 public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements Observer{
-
-    /**
-     * Creates new form TelaCadastroUsuario
-     */
+    Sistema sistema;
+    
     public TelaCadastroUsuario() {
         initComponents();
+        this.sistema = sistema;
+        
     }
     @Override
     public void atualizar(){}
@@ -96,7 +97,9 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements O
     }//GEN-LAST:event_nomeUsuarioActionPerformed
 
     private void salvarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarUsuarioActionPerformed
-        // TODO add your handling code here:
+        setVisible(false);
+        nomeUsuario.setText("");
+        senhaUsuario.setText("");
     }//GEN-LAST:event_salvarUsuarioActionPerformed
 
 
