@@ -4,55 +4,50 @@ import sistemalogin.trabalhofinal.Model.Usuario;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public class DAO {
-
-
-    //TODO mano ajustar esses clientes para o usuario
-
-
 
     private static PreparedStatement preparedStatement= null;
     private static ResultSet resultSet = null;
     private static String DRIVER = "org.sqlite.JDBC";
     private static String BD = "jdbc:sqlite:LoginDB.db";
 
-    private static final String CADASTRAR_CLIENTE = " INSERT INTO CLIENTE "
-            + " (ID, NOME, SENHA, LIDAS, RECEBIDAS, TIPO, APROVADO)"
+    private static final String CADASTRAR_CLIENTE = " INSERT INTO Usuario "
+            + " (id, nome, senha, notificacoesLidas, notificacoesRecebidas, tipo, aprovado)"
             + " VALUES (NULL, ?, ?, ?, ?, ?, ?)";
 
-    private static final String CONSULTAR_CLIENTE = " SELECT * FROM CLIENTE "
-            + " WHERE ID = ? ";
+    private static final String CONSULTAR_CLIENTE = " SELECT * FROM Usuario "
+            + " WHERE id = ? ";
 
 
-    private static final String ALTERAR_CLIENTE = " UPDATE CLIENTE SET"
-            + " NOME = ? "
-            + " SENHA = ? "
-            + " LIDAS = ? "
-            + " RECEBIDAS = ? "
-            + " TIPO = ? "
-            + " APROVADO = ? "
-            + " WHERE ID = ? ";
+    private static final String ALTERAR_CLIENTE = " UPDATE Usuario SET"
+            + " nome = ? "
+            + " senha = ? "
+            + " notificacoesLidas = ? "
+            + " notificacoesRecebidas = ? "
+            + " tipo = ? "
+            + " aprovado = ? "
+            + " WHERE id = ? ";
 
 
-    private static final String EXCLUIR_CLIENTE = " DELETE FROM CLIENTE "
-            + " WHERE ID = ? ";
+    private static final String EXCLUIR_CLIENTE = " DELETE FROM Usuario "
+            + " WHERE id = ? ";
 
-    private static final String LISTAR_CLIENTES = " SELECT * FROM CLIENTE "
+    private static final String LISTAR_CLIENTES = " SELECT * FROM Usuario "
             + " WHERE 1 = 1 ";
 
-    private static final String CONSULTAR_USUARIO = " SELECT USUARIO, SENHA "
+    private static final String CONSULTAR_USUARIO = " SELECT nome, senha "
             + " FROM USUARIO "
-            + " WHERE USUARIO = ? "
-            + " AND SENHA = ? ";
+            + " WHERE nome = ? "
+            + " AND senha = ? ";
 
     public DAO() {
 
     }
 
-    public void cadastrarUsuario(Usuario usuario){
+    public void cadastrarUsuario(Usuario usuario) {
         Connection connection = Conexao.getInstance().abrirConexao();
-
         String query = CADASTRAR_CLIENTE;
 
         try {
@@ -61,24 +56,41 @@ public class DAO {
             // NOME, SENHA, LIDAS, RECEBIDAS, TIPO, APROVADO
             preparedStatement.setString(i++, usuario.getNome());
             preparedStatement.setString(i++, usuario.getSenha());
-            preparedStatement.setString(i++, usuario.getNotificacoesLidas());
-            preparedStatement.setString(i++, usuario.getNotificacoesRecebidas());
+            preparedStatement.setDouble(i++, usuario.getNotificacoesLidas());
+            preparedStatement.setDouble(i++, usuario.getNotificacoesRecebidas());
             preparedStatement.setString(i++, usuario.getNomeEstado());
-            preparedStatement.setString(i++, usuario.isAprovado());
+            preparedStatement.setBoolean(i++, usuario.isAprovado());
 
-            connection.commit();
+            preparedStatement.executeUpdate();  // Executa a atualização no banco
 
+            connection.commit();  // Apenas se auto-commit estiver desativado
 
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            fecharConexao();
+            try {
+                if (connection != null) {
+                    connection.rollback();  // Reverte a transação em caso de erro
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } finally {
+            // Fecha o PreparedStatement e Connection
+            try {
+                if (preparedStatement != null) {
+                    preparedStatement.close();
+                }
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-
-
     }
 
-    public Usuario consultarUsuario(String id) throws Exception {
+
+    public Usuario consultarUsuario(int id) throws Exception {
         Connection connection = Conexao.getInstance().abrirConexao();
         Usuario usuario = null;
 
@@ -87,13 +99,20 @@ public class DAO {
         try {
             preparedStatement = connection.prepareStatement(query);
             int i = 1;
-            preparedStatement.setString(i++, id);
+            preparedStatement.setInt(i++, id);
 
             resultSet = preparedStatement.executeQuery();
 
-            While(resultSet.next()){
+            while (resultSet.next()){
                 //TODO COLOCA O CONSTRUTOR DO USUARIO DIREITO NISSO
-                usuario = new Usuario();
+                usuario = new Usuario(id,
+                        resultSet.getString("nome"),
+                        resultSet.getString("senha"),
+                        resultSet.getDouble("notificacoesLidas"),
+                        resultSet.getDouble("notificacoesRecebidas"),
+                        resultSet.getString("tipo"),
+                        resultSet.getBoolean("aprovado")
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -102,7 +121,7 @@ public class DAO {
         }
         if (usuario == null){
             //TRATAR QUE NAO ENCONTROU O USUARIO
-            throw new Exception("encontrou nao o amigo");
+            throw new NoSuchElementException("Usuário com ID " + id + " não encontrado");
         }
         return usuario;
     }
@@ -116,6 +135,11 @@ public class DAO {
             preparedStatement = connection.prepareStatement(query);
             int i = 1;
             preparedStatement.setString(i++, usuario.getNome());
+            preparedStatement.setString(i++,usuario.getSenha());
+            preparedStatement.setDouble(i++,usuario.getNotificacoesLidas());
+            preparedStatement.setDouble(i++,usuario.getNotificacoesRecebidas());
+            preparedStatement.setString(i++,usuario.getNomeEstado());
+            preparedStatement.setBoolean(i++,usuario.isAprovado());
             preparedStatement.setString(i++, id);
 
             preparedStatement.execute();
@@ -165,15 +189,19 @@ public class DAO {
             preparedStatement = connection.prepareStatement(query);
 
 
-
-
-
-
             resultSet = preparedStatement.executeQuery();
 
-            While(resultSet.next()){
-                //TODO COLOCA O CONSTRUTOR DO USUARIO DIREITO NISSO
-                usuarios.add(new Usuario());
+            while (resultSet.next()){
+                Usuario usuario = new Usuario(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nome"),                // nome
+                        resultSet.getString("senha"),               // senha
+                        resultSet.getDouble("notificacoesLidas"),               // notificações lidas
+                        resultSet.getDouble("notificacoesRecebidas"),           // notificações recebidas
+                        resultSet.getString("tipo"),              // nomeEstado
+                        resultSet.getBoolean("aprovado")            // aprovado
+                );
+                usuarios.add(usuario);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -201,9 +229,16 @@ public class DAO {
 
             resultSet = preparedStatement.executeQuery();
 
-            While(resultSet.next()){
-                //TO-DO COLOCA O CONSTRUTOR DO USUARIO DIREITO NISSO
-                usuario = new Usuario();
+            while (resultSet.next()){
+                usuario = new Usuario(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nome"),                // nome
+                        resultSet.getString("senha"),               // senha
+                        resultSet.getDouble("notificacoesLidas"),               // notificações lidas
+                        resultSet.getDouble("notificacoesRecebidas"),           // notificações recebidas
+                        resultSet.getString("tipo"),              // nomeEstado
+                        resultSet.getBoolean("aprovado")
+                );
             }
         } catch (SQLException e) {
             e.printStackTrace();

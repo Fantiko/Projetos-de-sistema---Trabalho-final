@@ -6,7 +6,6 @@ import sistemalogin.trabalhofinal.Mensagem.Mesagem;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Usuario {
 
@@ -14,7 +13,7 @@ public class Usuario {
     private String nome;
     private String senha;
 
-    private final LocalDate dataCadastro;
+    //private final LocalDate dataCadastro;
 
     private double notificacoesRecebidas;
     private double notificacoesLidas;
@@ -25,10 +24,11 @@ public class Usuario {
     private final int id;
     private boolean aprovado;
 
+
     //-------------------------
-    public LocalDate getDataCadastro() {
-        return dataCadastro;
-    }
+//    public LocalDate getDataCadastro() {
+//        return dataCadastro;
+//    }
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -66,7 +66,7 @@ public class Usuario {
     }
 //-------------------------
 
-    public Usuario(int id , String nome, String senha, double notificacoesLidas, double notificacoesRecebidas, String tipo, Boolean aprovado) throws Exception {
+    public Usuario(int id , String nome, String senha, double notificacoesLidas, double notificacoesRecebidas, String tipo, Boolean aprovado) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;
@@ -81,8 +81,6 @@ public class Usuario {
         } else if ("user".equalsIgnoreCase(tipo)) {
             this.estado = new User(this);
 
-        }else {
-            throw new Exception();
         }
 
         this.aprovado = aprovado;
@@ -119,8 +117,8 @@ public class Usuario {
         estado.deletarUsuario();
     }
 
-    public void isAprovado() {
-       estado.isAprovado();
+    public boolean isAprovado() {
+       return this.estado.isAprovado();
     }
     public void setAprovado() {
         estado.setAprovado();

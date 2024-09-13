@@ -1,10 +1,13 @@
 package sistemalogin.trabalhofinal.Model;
 
 public class Adm extends Estado{
-
+    private boolean aprovado;
     public Adm(Usuario usuario) {
         super(usuario);
+        aprovado = true;
     }
+
+
 
     @Override
     public void criarUsuario(){
@@ -20,6 +23,8 @@ public class Adm extends Estado{
     }
 
 
-
-
+    @Override
+    public boolean isAprovado() {
+        return aprovado;
+    }
 }
