@@ -16,8 +16,8 @@ public class Main {
     public static void main(String[] args) {
         // Criando o objeto da classe Usuario com os dados do usuário
         Usuario usuario = new Usuario(
-                4,
-                "Ruanzinho",            // Nome
+                100,
+                "gustas",            // Nome
                 "2223",        // Senha
                 2,               // Notificações lidas
                 5,               // Notificações recebidas
