@@ -37,6 +37,8 @@ public class mensagem extends javax.swing.JInternalFrame implements Observer{
 
         jScrollPane2.setViewportView(jTextPane1);
 
+        setClosable(true);
+        setIconifiable(true);
         setTitle("Mensagem");
 
         jLabel1.setText("Título");

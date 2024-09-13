@@ -31,6 +31,8 @@ public class autorizaUsuario extends javax.swing.JInternalFrame implements Obser
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaAutoriza = new javax.swing.JTable();
 
+        setClosable(true);
+        setIconifiable(true);
         setTitle("Autorizar Usuários");
 
         autorizaUsuario.setText("Rejeitar");

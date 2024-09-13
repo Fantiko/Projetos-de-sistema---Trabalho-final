@@ -27,6 +27,8 @@ public class telaLog extends javax.swing.JInternalFrame implements Observer{
         formatoLog = new javax.swing.JComboBox<>();
         btnSalvar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
         setTitle("LOG");
 
         jLabel1.setText("LOG");

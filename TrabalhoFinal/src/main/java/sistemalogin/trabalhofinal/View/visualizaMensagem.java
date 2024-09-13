@@ -32,6 +32,8 @@ public class visualizaMensagem extends javax.swing.JInternalFrame implements Obs
         tabelaMensagem = new javax.swing.JTable();
         lerMensagem = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
         setTitle("Mensagens Recebidas");
 
         tabelaMensagem.setModel(new javax.swing.table.DefaultTableModel(

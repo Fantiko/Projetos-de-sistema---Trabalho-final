@@ -42,7 +42,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         
         
         addComponentsToMainPane();
-        setVisible(true);
+        setVisible(false);
     }
     
     

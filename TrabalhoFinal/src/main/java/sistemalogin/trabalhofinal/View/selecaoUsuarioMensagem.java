@@ -30,6 +30,8 @@ public class selecaoUsuarioMensagem extends javax.swing.JInternalFrame {
         tblSelecaousuario = new javax.swing.JTable();
         btnSalvar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
         setTitle("Seleção de Usuários");
 
         tblSelecaousuario.setModel(new javax.swing.table.DefaultTableModel(
