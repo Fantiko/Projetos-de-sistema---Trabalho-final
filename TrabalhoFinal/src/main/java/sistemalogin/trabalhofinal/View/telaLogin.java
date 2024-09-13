@@ -15,12 +15,12 @@ public class telaLogin extends javax.swing.JInternalFrame implements Observer{
     Sistema sistema;
     TelaCadastroUsuario telaCadastroUsuario;
     
-    public telaLogin(TelaCadastroUsuario novaTela) {
+    public telaLogin(TelaCadastroUsuario novaTelaUsuario) {
         initComponents();
         this.sistema = sistema;
         setVisible(true);
         telaCadastroUsuario = new TelaCadastroUsuario();
-        telaCadastroUsuario = novaTela;
+        telaCadastroUsuario = novaTelaUsuario;
     }
     @Override
     public void atualizar(){}
@@ -42,12 +42,6 @@ public class telaLogin extends javax.swing.JInternalFrame implements Observer{
         jLabel3.setText("NOME:");
 
         jLabel4.setText("SENHA:");
-
-        nomeLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeLoginActionPerformed(evt);
-            }
-        });
 
         acessoUsuario.setText("Acessar");
         acessoUsuario.addActionListener(new java.awt.event.ActionListener() {
@@ -104,10 +98,6 @@ public class telaLogin extends javax.swing.JInternalFrame implements Observer{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void nomeLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeLoginActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nomeLoginActionPerformed
 
     private void acessoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessoUsuarioActionPerformed
         

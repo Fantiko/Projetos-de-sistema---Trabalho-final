@@ -22,6 +22,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
     private mensagem mensagem;
     private telaLogin telaLogin;
     private visualizaMensagem visualizaMensagem;
+    private telaLog telaLog;
     
     
     public TelaPrincipal(Sistema sistema) {
@@ -30,11 +31,12 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         telaCadastroUsuario = new TelaCadastroUsuario();
         alterarSenha = new alteraSenha();
         autorizaUsuario = new autorizaUsuario();
-        buscaUsuario = new buscaUsuario();
+        buscaUsuario = new buscaUsuario(telaCadastroUsuario);
         enviarMensagem = new enviarMensagem();
         mensagem = new mensagem();
         telaLogin = new telaLogin(telaCadastroUsuario);
         visualizaMensagem = new visualizaMensagem(mensagem);
+        telaLog = new telaLog();
         
         addComponentsToMainPane();
         setVisible(true);
@@ -54,6 +56,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         desktopPane.add(mensagem);
         desktopPane.add(telaLogin);
         desktopPane.add(visualizaMensagem);
+        desktopPane.add(telaLog);
     }
     
     @SuppressWarnings("unchecked")
@@ -68,6 +71,8 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         tipoUsuario = new javax.swing.JLabel();
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
+        jMenu5 = new javax.swing.JMenu();
+        abrirTelaLog = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         abreTelaSenha = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -135,6 +140,18 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         );
 
         menuBar.setName("SISTEMA"); // NOI18N
+
+        jMenu5.setText("LOG");
+
+        abrirTelaLog.setText("LOG");
+        abrirTelaLog.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abrirTelaLogActionPerformed(evt);
+            }
+        });
+        jMenu5.add(abrirTelaLog);
+
+        menuBar.add(jMenu5);
 
         jMenu2.setMnemonic('f');
         jMenu2.setText("Trocar Senha");
@@ -234,6 +251,10 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         enviarMensagem.setVisible(true);
     }//GEN-LAST:event_abreEnviarMensagemActionPerformed
 
+    private void abrirTelaLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirTelaLogActionPerformed
+        telaLog.setVisible(true);
+    }//GEN-LAST:event_abrirTelaLogActionPerformed
+
  
     public static void main(String args[]) {
         
@@ -272,6 +293,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
     private javax.swing.JMenuItem abreBuscaUsuario;
     private javax.swing.JMenuItem abreEnviarMensagem;
     private javax.swing.JMenuItem abreTelaSenha;
+    private javax.swing.JMenuItem abrirTelaLog;
     private javax.swing.JDesktopPane desktopPane;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -280,6 +302,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JLabel nomeUsuario;

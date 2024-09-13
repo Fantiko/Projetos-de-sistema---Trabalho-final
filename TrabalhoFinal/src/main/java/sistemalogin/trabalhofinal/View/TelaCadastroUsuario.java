@@ -41,12 +41,6 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements O
 
         jLabel3.setText("SENHA:");
 
-        nomeUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nomeUsuarioActionPerformed(evt);
-            }
-        });
-
         salvarUsuario.setText("Cadastrar");
         salvarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,10 +85,6 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements O
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void nomeUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nomeUsuarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nomeUsuarioActionPerformed
 
     private void salvarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarUsuarioActionPerformed
         setVisible(false);

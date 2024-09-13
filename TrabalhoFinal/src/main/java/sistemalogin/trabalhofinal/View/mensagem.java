@@ -10,7 +10,7 @@ import sistemalogin.trabalhofinal.Presenter.Sistema;
  *
  * @author Ruan Ribeiro
  */
-public class mensagem extends javax.swing.JInternalFrame {
+public class mensagem extends javax.swing.JInternalFrame implements Observer{
     Sistema sistema;
     /**
      * Creates new form mensagem
@@ -21,6 +21,8 @@ public class mensagem extends javax.swing.JInternalFrame {
         
     }
 
+    @Override
+    public void atualizar(){}
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
