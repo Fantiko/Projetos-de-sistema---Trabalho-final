@@ -12,13 +12,13 @@ import sistemalogin.trabalhofinal.Presenter.Sistema;
  */
 public class enviarMensagem extends javax.swing.JInternalFrame implements Observer{
     Sistema sistema;
-    /**
-     * Creates new form enviarMensagem
-     */
-    public enviarMensagem() {
+    selecaoUsuarioMensagem selecaoUsuario;
+            
+    public enviarMensagem(selecaoUsuarioMensagem selecaoUsuarioMensagem) {
         initComponents();
         this.sistema = sistema;
-    
+        selecaoUsuario = new selecaoUsuarioMensagem();
+        selecaoUsuario = selecaoUsuarioMensagem;
     }
     
     @Override
@@ -30,12 +30,12 @@ public class enviarMensagem extends javax.swing.JInternalFrame implements Observ
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        destinatarioMensagem = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         tituloMensagem = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         btnEnviaMensagem = new javax.swing.JButton();
+        btnDestinatario = new javax.swing.JButton();
 
         setTitle("Enviar Mensagem");
 
@@ -54,6 +54,13 @@ public class enviarMensagem extends javax.swing.JInternalFrame implements Observ
             }
         });
 
+        btnDestinatario.setText("Destinatários");
+        btnDestinatario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDestinatarioActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -63,16 +70,16 @@ public class enviarMensagem extends javax.swing.JInternalFrame implements Observ
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1)
                             .addContainerGap())
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
                                 .addComponent(jLabel2))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(destinatarioMensagem, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
-                                .addComponent(tituloMensagem))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(tituloMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnDestinatario))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnEnviaMensagem)
                         .addContainerGap())))
@@ -80,17 +87,17 @@ public class enviarMensagem extends javax.swing.JInternalFrame implements Observ
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(destinatarioMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(btnDestinatario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tituloMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEnviaMensagem)
                 .addContainerGap())
         );
@@ -102,10 +109,14 @@ public class enviarMensagem extends javax.swing.JInternalFrame implements Observ
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEnviaMensagemActionPerformed
 
+    private void btnDestinatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDestinatarioActionPerformed
+        selecaoUsuario.setVisible(true);
+    }//GEN-LAST:event_btnDestinatarioActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDestinatario;
     private javax.swing.JButton btnEnviaMensagem;
-    private javax.swing.JTextField destinatarioMensagem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

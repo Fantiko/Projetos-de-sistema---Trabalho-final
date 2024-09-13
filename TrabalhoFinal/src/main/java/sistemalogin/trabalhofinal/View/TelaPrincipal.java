@@ -23,6 +23,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
     private telaLogin telaLogin;
     private visualizaMensagem visualizaMensagem;
     private telaLog telaLog;
+    private selecaoUsuarioMensagem selecaoUsuarioMensagem; 
     
     
     public TelaPrincipal(Sistema sistema) {
@@ -31,12 +32,14 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         telaCadastroUsuario = new TelaCadastroUsuario();
         alterarSenha = new alteraSenha();
         autorizaUsuario = new autorizaUsuario();
+        selecaoUsuarioMensagem = new selecaoUsuarioMensagem();
         buscaUsuario = new buscaUsuario(telaCadastroUsuario);
-        enviarMensagem = new enviarMensagem();
+        enviarMensagem = new enviarMensagem(selecaoUsuarioMensagem);
         mensagem = new mensagem();
         telaLogin = new telaLogin(telaCadastroUsuario);
         visualizaMensagem = new visualizaMensagem(mensagem);
         telaLog = new telaLog();
+        
         
         addComponentsToMainPane();
         setVisible(true);
@@ -57,6 +60,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         desktopPane.add(telaLogin);
         desktopPane.add(visualizaMensagem);
         desktopPane.add(telaLog);
+        desktopPane.add(selecaoUsuarioMensagem);
     }
     
     @SuppressWarnings("unchecked")
