@@ -26,7 +26,6 @@ public class Conexao {
         try {
             Class.forName(DRIVER);
             conexao = DriverManager.getConnection(BD);
-            //conexao.setAutoCommit(false);
         } catch (SQLException | ClassNotFoundException e) {
             System.out.println("Erro ao conectar com o banco de dados" + e.getMessage());
         }

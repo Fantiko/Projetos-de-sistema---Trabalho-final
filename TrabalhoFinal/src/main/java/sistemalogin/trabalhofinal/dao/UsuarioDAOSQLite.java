@@ -11,8 +11,6 @@ public class UsuarioDAOSQLite implements UsuarioDAO
 
     private static PreparedStatement preparedStatement = null;
     private static ResultSet resultSet = null;
-    private static final String DRIVER = "org.sqlite.JDBC";
-    private static final String BD = "jdbc:sqlite:LoginDB.db";
 
     private static final String CADASTRAR_CLIENTE = " INSERT INTO Usuario "
             + " (id, nome, senha, notificacoesLidas, notificacoesRecebidas, tipo, aprovado)"
