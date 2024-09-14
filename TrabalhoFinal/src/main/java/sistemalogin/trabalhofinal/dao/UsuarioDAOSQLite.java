@@ -130,7 +130,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     }
 
     @Override
-    public void alterarUsuario(String id, Usuario usuario){
+    public void alterarUsuario(int id, Usuario usuario){
         Connection connection = Conexao.getInstance().abrirConexao();
 
         String query = ALTERAR_CLIENTE;
@@ -160,7 +160,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     }
 
     @Override
-    public void excluirUsuario(String id){
+    public void excluirUsuario(int id){
         Connection connection = Conexao.getInstance().abrirConexao();
 
         String query = EXCLUIR_CLIENTE;
