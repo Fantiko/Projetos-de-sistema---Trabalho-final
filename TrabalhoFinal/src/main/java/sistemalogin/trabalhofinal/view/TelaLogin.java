@@ -104,7 +104,7 @@ public class TelaLogin extends javax.swing.JInternalFrame implements Observer{
         String nome = nomeLogin.getText();
         String senha = senhaLogin.getText();
 
-        sistema.logar(nome, senha);
+        sistema.logar(nome, senha, this);
     }//GEN-LAST:event_acessoUsuarioActionPerformed
 
     private void novoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoUsuarioActionPerformed

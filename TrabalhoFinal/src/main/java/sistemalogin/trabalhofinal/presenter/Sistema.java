@@ -17,6 +17,8 @@ import org.example.Logger.Logger;
 import org.example.Logger.JSONLogger;
 
 import javax.swing.*;
+import javax.swing.JLabel;
+import sistemalogin.trabalhofinal.view.*;
 
 
 public class Sistema 
@@ -66,25 +68,45 @@ public class Sistema
         logger.log(operacao, usuarioAfetado.getNome(), LocalDateTime.now(), this.usuarioLogado.getNome());
     }
 
-    public void logar(String nome, String senha)
+    public void logar(String nome, String senha, TelaLogin telalogin)
     {
         Usuario usuarioLogado = null;
 
         try
         {
             usuarioLogado = usuarioDAO.logarUsuario(nome, senha);
+            
         } catch (Exception e)
         {
             if(usuarioLogado == null)
             {
-
                 JOptionPane.showMessageDialog(telaPrincipal,
                         "Login e/ou senha incorretos.",
                         "Erro de Login",
                         JOptionPane.ERROR_MESSAGE);
+                return;
+                
             }
+            
+ 
         }
-        this.usuarioLogado = usuarioLogado;
+
+        if(usuarioLogado.isAprovado())
+        {
+            this.usuarioLogado = usuarioLogado;
+            telaPrincipal.setNomeUsuario(usuarioLogado.getNome());
+            telaPrincipal.setTipoUsuario(usuarioLogado.getNomeEstado());
+            telalogin.setVisible(false);
+            telaPrincipal.abreOpcaoAdm();
+            
+        } else
+        {
+            JOptionPane.showMessageDialog(telaPrincipal,
+                        "Usuario não aprovado para login.",
+                        "Erro de Login",
+                        JOptionPane.ERROR_MESSAGE);
+        }
+        
     }
 
     public boolean isSenhaValida(String senha)
@@ -131,6 +153,18 @@ public class Sistema
         }
 
     }
+    
+    public void abreTela(EnviarMensagem Enviarmensagem){
+        if(usuarioLogado.getNomeEstado().equalsIgnoreCase("adm")){
+            Enviarmensagem.setVisible(true);
+        }
+        
+    }
+    
+    public void abreMenu(JMenu abreOpcao){
+        if(usuarioLogado.getNomeEstado().equalsIgnoreCase("adm")){
+            abreOpcao.setVisible(true);
+        }
 
     public ArrayList<Usuario> pegarUsuariosNaoAprovados()
     {

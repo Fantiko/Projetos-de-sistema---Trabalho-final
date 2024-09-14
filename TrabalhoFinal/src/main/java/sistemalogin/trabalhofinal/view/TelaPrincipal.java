@@ -4,6 +4,7 @@
  */
 package sistemalogin.trabalhofinal.view;
 
+import javax.swing.JLabel;
 import sistemalogin.trabalhofinal.presenter.Sistema;
 
 /**
@@ -39,9 +40,11 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         visualizaMensagem = new VisualizaMensagem(mensagem);
         telaLog = new TelaLog(sistema);
         
-        
         addComponentsToMainPane();
-        setVisible(false);
+        setVisible(true);
+        this.jMenu1.setVisible(false);
+        this.jMenu3.setVisible(false);
+        this.jMenu4.setVisible(false);
     }
     
     
@@ -201,9 +204,9 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
 
         menuBar.add(jMenu4);
 
-        jMenu1.setText("Enviar mensagem");
+        jMenu1.setText("Enviar Msg");
 
-        abreEnviarMensagem.setText("Enviar mensagem");
+        abreEnviarMensagem.setText("Enviar Msg");
         abreEnviarMensagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 abreEnviarMensagemActionPerformed(evt);
@@ -254,10 +257,13 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
     }//GEN-LAST:event_abreAutorizaUsuarioActionPerformed
 
     private void abreEnviarMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abreEnviarMensagemActionPerformed
-        enviarMensagem.setVisible(true);
+        sistema.abreTela(enviarMensagem);
+        
+        //enviarMensagem.setVisible(true);
     }//GEN-LAST:event_abreEnviarMensagemActionPerformed
 
     private void abrirTelaLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirTelaLogActionPerformed
+
         telaLog.setVisible(true);
     }//GEN-LAST:event_abrirTelaLogActionPerformed
 
@@ -293,6 +299,24 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
             }
         });*/
     }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario.setText(nomeUsuario);
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario.setText(tipoUsuario);
+    }
+    
+    public void abreOpcaoAdm(){
+        sistema.abreMenu(jMenu1);
+        sistema.abreMenu(jMenu4);
+        sistema.abreMenu(jMenu3);
+        System.out.println("Telas aparecendo");
+    }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem abreAutorizaUsuario;
