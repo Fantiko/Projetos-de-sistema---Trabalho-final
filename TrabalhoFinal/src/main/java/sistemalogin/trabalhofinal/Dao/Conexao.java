@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class Conexao {
     private static Conexao instancia;
     private static String DRIVER = "org.sqlite.JDBC";
-    private static String BD = "jdbc:sqlite:LoginDB.db";
+    private static String BD = "jdbc:sqlite:TrabalhoFinal/src/main/java/sistemalogin/trabalhofinal/resources/LoginDB";
     private static Connection conexao;
 
 
@@ -36,7 +36,7 @@ public class Conexao {
     public void fecharConexao(){
         try {
             if (conexao != null && conexao.isClosed()){
-
+                conexao.close();
             }
         } catch (SQLException e) {
             System.out.println("Erro ao fechar a conexao com o banco de dados:" + e.getMessage());
