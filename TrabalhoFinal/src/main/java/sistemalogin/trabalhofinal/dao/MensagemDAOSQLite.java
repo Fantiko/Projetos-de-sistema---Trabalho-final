@@ -16,7 +16,7 @@ public class MensagemDAOSQLite implements MensagemDAO{
 
     private static final String CADASTRAR_MENSAGENS = " INSERT INTO Mensagens "
             + " (id, usuarioId, mensagem, Lida) "
-            + " VALUES (NULL, ?, ?) ";
+            + " VALUES (NULL, ?, ?, ?) ";
 
 
     private static final String CONSULTAR_MENSAGEM = " SELECT * FROM Mesagens "

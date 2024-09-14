@@ -4,6 +4,8 @@
 
 package sistemalogin.trabalhofinal;
 
+import sistemalogin.trabalhofinal.dao.MensagemDAOSQLite;
+import sistemalogin.trabalhofinal.mensagem.Msg;
 import sistemalogin.trabalhofinal.presenter.Sistema;
 import sistemalogin.trabalhofinal.view.TelaPrincipal;
 import sistemalogin.trabalhofinal.dao.UsuarioDAOSQLite;
@@ -18,7 +20,16 @@ public class Main {
 
     public static void main(String[] args)
     {
-        TelaPrincipal telaPrincipal = new TelaPrincipal(new Sistema());
-        telaPrincipal.setVisible(true);
+
+        Msg msg = new Msg("ola mundo", 1, 3);
+        MensagemDAOSQLite dao = new MensagemDAOSQLite();
+
+        dao.cadastrarMensagens(msg);
+
+
+
+
+
+
     }
 }
