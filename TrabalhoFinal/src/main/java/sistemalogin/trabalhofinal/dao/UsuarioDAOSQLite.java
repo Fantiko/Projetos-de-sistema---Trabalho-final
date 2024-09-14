@@ -45,7 +45,9 @@ public class UsuarioDAOSQLite implements UsuarioDAO
 
     private static final String IS_EMPTY = "SELECT EXISTS (SELECT 1 FROM Usuario)";
 
-
+    private static final String LISTAR_CLIENTES_NAO_APROVADOS = "SELECT id, nome, senha, notificacoesLidas, notificacoesRecebidas, tipo, aprovado"
+            + "FROM Usuario"
+            + "WHERE aprovado = false";
     public UsuarioDAOSQLite()
     {
 
@@ -266,6 +268,51 @@ public class UsuarioDAOSQLite implements UsuarioDAO
             throw new Exception("NAO HA CLIENTES");
         }
         return usuarios;
+    }
+
+    @Override
+    public ArrayList<Usuario> listarUsuariosNaoAprovados() throws Exception
+    {
+        Connection connection = Conexao.getInstance().abrirConexao();
+        ArrayList<Usuario> usuariosNaoAprovados = new ArrayList<>();
+
+        String query = LISTAR_CLIENTES_NAO_APROVADOS;
+
+        try
+        {
+            preparedStatement = connection.prepareStatement(query);
+
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next())
+            {
+                Usuario usuario = new Usuario(
+                        resultSet.getInt("id"),
+                        resultSet.getString("nome"),                // nome
+                        resultSet.getString("senha"),               // senha
+                        resultSet.getDouble("notificacoesLidas"),               // notificações lidas
+                        resultSet.getDouble("notificacoesRecebidas"),           // notificações recebidas
+                        resultSet.getString("tipo"),              // nomeEstado
+                        resultSet.getBoolean("aprovado")            // aprovado
+                );
+                usuariosNaoAprovados.add(usuario);
+            }
+
+
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        } finally
+        {
+            fecharConexao();
+        }
+        if (usuariosNaoAprovados.size() < 0)
+        {
+            //TRATAR QUE NAO ENCONTROU O USUARIO
+            throw new Exception("NAO HA CLIENTES");
+        }
+        return usuariosNaoAprovados;
     }
 
     @Override

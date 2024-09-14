@@ -84,11 +84,7 @@ public class Sistema
                         JOptionPane.ERROR_MESSAGE);
             }
         }
-
-        if(usuarioLogado != null)
-        {
-            this.usuarioLogado = usuarioLogado;
-        }
+        this.usuarioLogado = usuarioLogado;
     }
 
     public boolean isSenhaValida(String senha)
@@ -134,5 +130,17 @@ public class Sistema
             e.printStackTrace();
         }
 
+    }
+
+    public ArrayList<Usuario> pegarUsuariosNaoAprovados()
+    {
+        try
+        {
+            return usuarioDAO.listarUsuariosNaoAprovados();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

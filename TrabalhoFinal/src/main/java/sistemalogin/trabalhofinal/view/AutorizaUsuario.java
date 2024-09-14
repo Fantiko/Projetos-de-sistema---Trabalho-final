@@ -4,7 +4,12 @@
  */
 package sistemalogin.trabalhofinal.view;
 
+import sistemalogin.trabalhofinal.dao.UsuarioDAOSQLite;
+import sistemalogin.trabalhofinal.model.Usuario;
 import sistemalogin.trabalhofinal.presenter.Sistema;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
 
 /**
  *
@@ -20,7 +25,23 @@ public class AutorizaUsuario extends javax.swing.JInternalFrame implements Obser
     }
 
     @Override
-    public void atualizar(){}
+    public void atualizar()
+    {
+        ArrayList<Usuario> usuariosNaoAprovados = sistema.pegarUsuariosNaoAprovados();
+
+        if(usuariosNaoAprovados == null)
+        {
+            return;
+        }
+
+        DefaultTableModel tabelaAutorizaModel = (DefaultTableModel) tabelaAutoriza.getModel();
+        tabelaAutorizaModel.setRowCount(0);
+
+        for(Usuario u : usuariosNaoAprovados)
+        {
+            tabelaAutorizaModel.addRow(new Object[]{ u.getNome() });
+        }
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -89,11 +110,13 @@ public class AutorizaUsuario extends javax.swing.JInternalFrame implements Obser
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rejeitaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejeitaUsuarioActionPerformed
+    private void rejeitaUsuarioActionPerformed(java.awt.event.ActionEvent evt)
+    {//GEN-FIRST:event_rejeitaUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rejeitaUsuarioActionPerformed
 
-    private void autorizaUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autorizaUsuarioActionPerformed
+    private void autorizaUsuarioActionPerformed(java.awt.event.ActionEvent evt)
+    {//GEN-FIRST:event_autorizaUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_autorizaUsuarioActionPerformed
 
