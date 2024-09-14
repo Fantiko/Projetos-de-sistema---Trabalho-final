@@ -4,6 +4,8 @@ public abstract class Estado {
 
     protected Usuario usuario;
 
+    private boolean aprovado;
+
     public Estado(Usuario usuario) {
         this.usuario = usuario;
     }

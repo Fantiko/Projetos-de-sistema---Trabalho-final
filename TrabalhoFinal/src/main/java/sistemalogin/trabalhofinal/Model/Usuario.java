@@ -13,19 +13,22 @@ public class Usuario {
     private String nome;
     private String senha;
 
-    private final LocalDate dataCadastro;
+    //private final LocalDate dataCadastro;
 
     private double notificacoesRecebidas;
     private double notificacoesLidas;
     private Estado estado;
 
-    public List<Mesagem> mensagens;
+    private List<Mesagem> mensagens;
+
+    private final int id;
+    private boolean aprovado;
 
 
     //-------------------------
-    public LocalDate getDataCadastro() {
-        return dataCadastro;
-    }
+//    public LocalDate getDataCadastro() {
+//        return dataCadastro;
+//    }
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -63,22 +66,34 @@ public class Usuario {
     }
 //-------------------------
 
-    public Usuario(String nome, String senha) {
+    public Usuario(int id , String nome, String senha, double notificacoesLidas, double notificacoesRecebidas, String tipo, Boolean aprovado) {
+        this.id = id;
         this.nome = nome;
         this.senha = senha;
         this.mensagens = new ArrayList<>();
-        this.notificacoesLidas = 0;
-        this.notificacoesRecebidas = 0;
-        this.dataCadastro = LocalDate.now();
+        this.notificacoesLidas = notificacoesLidas;
+        this.notificacoesRecebidas = notificacoesRecebidas;
+        //this.dataCadastro = LocalDate.now();
+
+        if ("adm".equalsIgnoreCase(tipo)){
+            this.estado = new Adm(this);
+
+        } else if ("user".equalsIgnoreCase(tipo)) {
+            this.estado = new User(this);
+
+        }
+
+        this.aprovado = aprovado;
+
     }
 
 
-    private String getNome() {
+    public String getNome() {
         return nome;
     }
 
 
-    private String getSenha() {
+    public String getSenha() {
         return senha;
     }
 
@@ -86,7 +101,7 @@ public class Usuario {
         // metodos para alterar a senha
     }
 
-    private String getNomeEstado() {
+    public String getNomeEstado() {
         return estado.getNomeEstado();
     }
 
@@ -102,16 +117,16 @@ public class Usuario {
         estado.deletarUsuario();
     }
 
-    public void isAprovado() {
-       estado.isAprovado();
+    public boolean isAprovado() {
+       return this.estado.isAprovado();
     }
     public void setAprovado() {
         estado.setAprovado();
     }
 
 
-
-
-
+    public int getId() {
+        return id;
+    }
 
 }
