@@ -2,10 +2,12 @@ package sistemalogin.trabalhofinal.Presenter;
 
 import com.pss.senha.validacao.ValidadorSenha;
 import org.example.Logger.Operacao;
+import org.slf4j.LoggerFactory;
 import sistemalogin.trabalhofinal.Dao.DAO;
 import sistemalogin.trabalhofinal.Model.Usuario;
 import sistemalogin.trabalhofinal.View.Observer;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import sistemalogin.trabalhofinal.View.TelaCadastroUsuario;
@@ -19,6 +21,7 @@ import javax.swing.*;
 
 public class Sistema 
 {
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(Sistema.class);
     private ArrayList<Observer> telas;
     private Logger logger;
     private Usuario usuarioLogado;
@@ -58,9 +61,9 @@ public class Sistema
         this.logger = logger;
     }
 
-    public void log(Operacao operacao)
+    public void log(Operacao operacao, Usuario usuarioAfetado)
     {
-
+        logger.log(operacao, usuarioAfetado.getNome(), LocalDateTime.now(), this.usuarioLogado.getNome());
     }
 
     public void logar(String nome, String senha)
