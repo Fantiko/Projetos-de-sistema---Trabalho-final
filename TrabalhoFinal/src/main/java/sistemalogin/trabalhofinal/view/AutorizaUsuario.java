@@ -39,7 +39,7 @@ public class AutorizaUsuario extends javax.swing.JInternalFrame implements Obser
 
         for(Usuario u : usuariosNaoAprovados)
         {
-            tabelaAutorizaModel.addRow(new Object[]{ u.getNome() });
+            tabelaAutorizaModel.addRow(new Object[]{ u.getId(), u.getNome() });
         }
     }
     
@@ -120,12 +120,18 @@ public class AutorizaUsuario extends javax.swing.JInternalFrame implements Obser
 
     private void rejeitaUsuarioActionPerformed(java.awt.event.ActionEvent evt)
     {//GEN-FIRST:event_rejeitaUsuarioActionPerformed
-        // TODO add your handling code here:
+        int linhaSelectionada = tabelaAutoriza.getSelectedRow();
+        int id = (int) tabelaAutoriza.getValueAt(linhaSelectionada, 0);
+
+        sistema.rejeitarUsuario(id);
     }//GEN-LAST:event_rejeitaUsuarioActionPerformed
 
     private void autorizaUsuarioActionPerformed(java.awt.event.ActionEvent evt)
     {//GEN-FIRST:event_autorizaUsuarioActionPerformed
-        // TODO add your handling code here:
+        int linhaSelectionada = tabelaAutoriza.getSelectedRow();
+        int id = (int) tabelaAutoriza.getValueAt(linhaSelectionada, 0);
+
+        sistema.autorizarUsuario(id);
     }//GEN-LAST:event_autorizaUsuarioActionPerformed
 
 
