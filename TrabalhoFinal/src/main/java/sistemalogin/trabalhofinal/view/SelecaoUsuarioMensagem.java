@@ -4,19 +4,29 @@
  */
 package sistemalogin.trabalhofinal.view;
 
+import sistemalogin.trabalhofinal.presenter.Sistema;
+
 /**
  *
  * @author Ruan Ribeiro
  */
-public class SelecaoUsuarioMensagem extends javax.swing.JInternalFrame {
-
+public class SelecaoUsuarioMensagem extends javax.swing.JInternalFrame implements Observer{
+    Sistema sistema;
     /**
      * Creates new form selecaoUsuarioMensagem
      */
-    public SelecaoUsuarioMensagem() {
+    public SelecaoUsuarioMensagem(Sistema sistema) {
+        this.sistema = sistema;
         initComponents();
+        sistema.addTela(this);
     }
 
+    
+    @Override
+    public void atualizar()
+    {
+
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

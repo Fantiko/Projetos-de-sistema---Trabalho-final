@@ -19,6 +19,8 @@ public class TelaLogin extends javax.swing.JInternalFrame implements Observer{
         setVisible(true);
         telaCadastroUsuario = new TelaCadastroUsuario(sistema);
         telaCadastroUsuario = novaTelaUsuario;
+        
+        this.sistema.addTela(this);
     }
     @Override
     public void atualizar(){}

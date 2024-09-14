@@ -14,11 +14,13 @@ public class VisualizaMensagem extends javax.swing.JInternalFrame implements Obs
     Sistema sistema;
     Mensagem mensagem;
     
-    public VisualizaMensagem(Mensagem novaMensagem) {
+    public VisualizaMensagem(Mensagem novaMensagem, Sistema sistema) {
         initComponents();
         this.sistema = sistema;
-        mensagem = new Mensagem();
+        mensagem = new Mensagem(sistema);
         mensagem = novaMensagem;
+        
+        this.sistema.addTela(this);
     }
 
     @Override

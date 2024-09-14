@@ -19,6 +19,8 @@ public class AlteraSenha extends javax.swing.JInternalFrame implements Observer{
     {
         initComponents();
         this.sistema = sistema;
+        
+        this.sistema.addTela(this);
     }
     
     @Override

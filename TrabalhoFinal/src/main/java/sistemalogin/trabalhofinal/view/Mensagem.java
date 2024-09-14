@@ -15,10 +15,11 @@ public class Mensagem extends javax.swing.JInternalFrame implements Observer{
     /**
      * Creates new form mensagem
      */
-    public Mensagem() {
+    public Mensagem(Sistema sistema) {
         initComponents();
         this.sistema = sistema;
         
+        this.sistema.addTela(this);
     }
 
     @Override
