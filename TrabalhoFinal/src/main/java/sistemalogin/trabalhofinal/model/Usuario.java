@@ -142,4 +142,9 @@ public class Usuario {
         return id;
     }
 
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    
 }

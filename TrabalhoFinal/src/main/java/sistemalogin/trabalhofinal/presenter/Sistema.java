@@ -177,4 +177,10 @@ public class Sistema
         }
         return null;
     }
+    
+    public void alterarSenha(String senhaNova, String senhaAtual){
+        if((usuarioLogado.getSenha()) == senhaAtual){
+            usuarioLogado.setSenha(senhaNova);
+        }
+    }
 }
