@@ -5,6 +5,10 @@
 package sistemalogin.trabalhofinal.view;
 
 import sistemalogin.trabalhofinal.presenter.Sistema;
+import java.util.ArrayList;
+
+import javax.swing.table.DefaultTableModel;
+import sistemalogin.trabalhofinal.model.Usuario;
 
 /**
  *
@@ -18,10 +22,30 @@ public class BuscaUsuario extends javax.swing.JInternalFrame implements Observer
         initComponents();
         this.sistema = sistema;
         telaCadastroUsuario = novaTelaUsuario;
+        
+        this.sistema.addTela(this);
     }
 
     @Override
-    public void atualizar(){}
+    public void atualizar(){
+    
+        ArrayList<Usuario> usuariosAprovados = sistema.pegarUsuarios();
+
+        if(usuariosAprovados == null)
+        {
+            return;
+        }
+
+        DefaultTableModel tabelaBuscaModel = (DefaultTableModel) tabelaBusca.getModel();
+        tabelaBuscaModel.setRowCount(0);
+
+        for(Usuario u : usuariosAprovados)
+        {
+            tabelaBuscaModel.addRow(new Object[]{ u.getNome(), "12/12/2012", u.getNotificacoesRecebidas(), u.getNotificacoesLidas()});
+        }
+    
+    
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

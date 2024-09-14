@@ -149,6 +149,7 @@ public class Sistema
             Usuario novoUsuario = new Usuario(nome, senha, isPrimeiroUsuario);
             usuarioDAO.cadastrarUsuario(novoUsuario);
             this.notificarTelas();
+            
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -181,6 +182,19 @@ public class Sistema
         {
             e.printStackTrace();
         }
+        return null;
+    }
+    
+    public ArrayList<Usuario> pegarUsuarios(){
+    
+        try
+        {
+            System.out.println("teste lista usuario");
+            return usuarioDAO.listarUsuarios();
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+        System.out.println("teste lista usuario vazia");
         return null;
     }
     

@@ -22,6 +22,7 @@ public class AutorizaUsuario extends javax.swing.JInternalFrame implements Obser
         initComponents();
         this.sistema = sistema;
         
+        this.sistema.addTela(this);
     }
 
     @Override

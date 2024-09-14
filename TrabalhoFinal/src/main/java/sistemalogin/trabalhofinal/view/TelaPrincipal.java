@@ -45,13 +45,16 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         this.jMenu1.setVisible(false);
         this.jMenu3.setVisible(false);
         this.jMenu4.setVisible(false);
+        
+        
     }
     
     
     @Override
     public void atualizar()
     {
-        this.autorizaUsuario.atualizar();
+        //this.autorizaUsuario.atualizar();
+        
     }
     
     public final void addComponentsToMainPane()
@@ -66,6 +69,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         desktopPane.add(visualizaMensagem);
         desktopPane.add(telaLog);
         desktopPane.add(selecaoUsuarioMensagem);
+
     }
     
     @SuppressWarnings("unchecked")
