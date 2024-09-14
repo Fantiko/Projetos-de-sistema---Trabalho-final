@@ -2,6 +2,7 @@ package sistemalogin.trabalhofinal.View;
 
 import java.util.List;
 
-public interface Observer {
+public interface Observer
+{
     void atualizar();
 }

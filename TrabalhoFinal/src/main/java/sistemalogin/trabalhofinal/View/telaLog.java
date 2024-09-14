@@ -4,20 +4,28 @@
  */
 package sistemalogin.trabalhofinal.View;
 
+import org.example.Logger.CSVLogger;
+import org.example.Logger.JSONLogger;
+import sistemalogin.trabalhofinal.Presenter.Sistema;
+
 /**
  *
  * @author Ruan Ribeiro
  */
 public class telaLog extends javax.swing.JInternalFrame implements Observer{
 
-    
-    public telaLog() {
-        
+    private Sistema sistema;
+    public telaLog(Sistema sistema)
+    {
+        this.sistema = sistema;
         initComponents();
     }
 
     @Override
-    public void atualizar(){}
+    public void atualizar()
+    {
+
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -71,8 +79,17 @@ public class telaLog extends javax.swing.JInternalFrame implements Observer{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt)
+    {//GEN-FIRST:event_btnSalvarActionPerformed
+        String formatoLogSelecionado = (String) this.formatoLog.getSelectedItem();
+
+        if(formatoLogSelecionado.equals("JSON"))
+        {
+            sistema.setLogger(new JSONLogger());
+        } else if (formatoLogSelecionado.equals("CSV"))
+        {
+            sistema.setLogger(new CSVLogger());
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
 
