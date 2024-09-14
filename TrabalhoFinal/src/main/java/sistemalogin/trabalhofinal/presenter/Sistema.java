@@ -148,6 +148,7 @@ public class Sistema
 
             Usuario novoUsuario = new Usuario(nome, senha, isPrimeiroUsuario);
             usuarioDAO.cadastrarUsuario(novoUsuario);
+            this.notificarTelas();
         } catch (Exception e)
         {
             e.printStackTrace();
