@@ -94,8 +94,10 @@ public class AlteraSenha extends javax.swing.JInternalFrame implements Observer{
         //setVisible(false);
         //novaSenha.setText("");
         //senhaAtual.setText("");
-        sistema.alterarSenha(novaSenha.getText(), senhaAtual.getText());
-
+        String velha = senhaAtual.getText();
+        String nova = novaSenha.getText();
+        sistema.alterarSenha(nova, velha);
+        
     }//GEN-LAST:event_btnAlteraSenhaActionPerformed
 
 

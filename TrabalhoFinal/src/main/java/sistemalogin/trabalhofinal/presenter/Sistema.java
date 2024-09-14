@@ -165,7 +165,8 @@ public class Sistema
         if(usuarioLogado.getNomeEstado().equalsIgnoreCase("adm")){
             abreOpcao.setVisible(true);
         }
-
+    }
+    
     public ArrayList<Usuario> pegarUsuariosNaoAprovados()
     {
         try
@@ -179,8 +180,25 @@ public class Sistema
     }
     
     public void alterarSenha(String senhaNova, String senhaAtual){
-        if((usuarioLogado.getSenha()) == senhaAtual){
-            usuarioLogado.setSenha(senhaNova);
+        if(usuarioLogado.getSenha().equals(senhaAtual)){
+            
+            if (this.isSenhaValida(senhaNova)) {
+                usuarioLogado.setSenha(senhaNova);
+                usuarioDAO.alterarUsuario(usuarioLogado.getId(), usuarioLogado);
+                
+                JOptionPane.showMessageDialog(telaPrincipal,
+                        "Senha alterada.",
+                        "Senha Alterada",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+                
         }
+        else{
+                JOptionPane.showMessageDialog(telaPrincipal,
+                        "Senha atual incorreta.",
+                        "Erro",
+                        JOptionPane.ERROR_MESSAGE);  
+        
+        }       
     }
 }

@@ -44,8 +44,8 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     private static final String IS_EMPTY = "SELECT EXISTS (SELECT 1 FROM Usuario)";
 
     private static final String LISTAR_CLIENTES_NAO_APROVADOS = "SELECT id, nome, senha, notificacoesLidas, notificacoesRecebidas, tipo, aprovado"
-            + "FROM Usuario"
-            + "WHERE aprovado = false";
+            + " FROM Usuario"
+            + " WHERE aprovado = false";
     public UsuarioDAOSQLite()
     {
 

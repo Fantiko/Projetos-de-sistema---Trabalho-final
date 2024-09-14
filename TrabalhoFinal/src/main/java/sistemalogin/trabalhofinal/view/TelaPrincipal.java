@@ -312,7 +312,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         sistema.abreMenu(jMenu1);
         sistema.abreMenu(jMenu4);
         sistema.abreMenu(jMenu3);
-        System.out.println("Telas aparecendo");
+        
     }
     
     

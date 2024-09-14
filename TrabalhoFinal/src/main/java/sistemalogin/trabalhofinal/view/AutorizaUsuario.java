@@ -56,14 +56,14 @@ public class AutorizaUsuario extends javax.swing.JInternalFrame implements Obser
         setIconifiable(true);
         setTitle("Autorizar Usuários");
 
-        autorizaUsuario.setText("Rejeitar");
+        autorizaUsuario.setText("Autorizar");
         autorizaUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 autorizaUsuarioActionPerformed(evt);
             }
         });
 
-        rejeitaUsuario.setText("Autorizar");
+        rejeitaUsuario.setText("Rejeitar");
         rejeitaUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rejeitaUsuarioActionPerformed(evt);

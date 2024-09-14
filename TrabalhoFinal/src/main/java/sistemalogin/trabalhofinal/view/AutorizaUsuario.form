@@ -57,7 +57,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="autorizaUsuario">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Rejeitar"/>
+        <Property name="text" type="java.lang.String" value="Autorizar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="autorizaUsuarioActionPerformed"/>
@@ -65,7 +65,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="rejeitaUsuario">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Autorizar"/>
+        <Property name="text" type="java.lang.String" value="Rejeitar"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rejeitaUsuarioActionPerformed"/>
