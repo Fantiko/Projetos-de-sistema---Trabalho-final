@@ -17,7 +17,7 @@
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="iconifiable" type="boolean" value="true"/>
-    <Property name="title" type="java.lang.String" value="Mensagem"/>
+    <Property name="title" type="java.lang.String" value="Msg"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -84,7 +84,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mensagem:"/>
+        <Property name="text" type="java.lang.String" value="Msg:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="tituloMensagem">

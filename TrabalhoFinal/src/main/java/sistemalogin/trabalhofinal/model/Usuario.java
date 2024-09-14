@@ -1,7 +1,7 @@
 package sistemalogin.trabalhofinal.model;
 
 
-import sistemalogin.trabalhofinal.mensagem.Mesagem;
+import sistemalogin.trabalhofinal.mensagem.Msg;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Usuario {
     private double notificacoesLidas;
     private Estado estado;
 
-    private List<Mesagem> mensagens;
+    private List<Msg> mensagens;
 
     private int id;
     private boolean aprovado;
@@ -56,12 +56,12 @@ public class Usuario {
         this.notificacoesLidas = notificacoesLidas;
     }
 
-    public List<Mesagem> getMensagens() {
+    public List<Msg> getMensagens() {
         return mensagens;
     }
 
-    public void addMensagem(Mesagem mensagem) {
-        this.mensagens.add(mensagem);
+    public void addMensagem(Msg msg) {
+        this.mensagens.add(msg);
     }
 //-------------------------
 

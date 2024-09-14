@@ -18,7 +18,9 @@ public class Main {
 
     public static void main(String[] args)
     {
-        TelaPrincipal telaPrincipal = new TelaPrincipal(new Sistema());
-        telaPrincipal.setVisible(true);
+        /*TelaPrincipal telaPrincipal = new TelaPrincipal(new Sistema());
+        telaPrincipal.setVisible(true);*/
+        
+        Sistema sistema = new Sistema();
     }
 }
