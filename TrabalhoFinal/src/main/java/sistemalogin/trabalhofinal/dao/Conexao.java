@@ -1,4 +1,4 @@
-package sistemalogin.trabalhofinal.Dao;
+package sistemalogin.trabalhofinal.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

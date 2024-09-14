@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package sistemalogin.trabalhofinal.View;
+package sistemalogin.trabalhofinal.view;
 
 import org.example.Logger.CSVLogger;
 import org.example.Logger.JSONLogger;
-import sistemalogin.trabalhofinal.Presenter.Sistema;
+import sistemalogin.trabalhofinal.presenter.Sistema;
 
 /**
  *
  * @author Ruan Ribeiro
  */
-public class telaLog extends javax.swing.JInternalFrame implements Observer{
+public class TelaLog extends javax.swing.JInternalFrame implements Observer{
 
     private Sistema sistema;
-    public telaLog(Sistema sistema)
+    public TelaLog(Sistema sistema)
     {
         this.sistema = sistema;
         initComponents();

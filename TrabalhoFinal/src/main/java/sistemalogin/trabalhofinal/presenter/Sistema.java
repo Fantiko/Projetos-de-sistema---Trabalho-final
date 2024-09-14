@@ -1,19 +1,17 @@
-package sistemalogin.trabalhofinal.Presenter;
+package sistemalogin.trabalhofinal.presenter;
 
-import com.pss.senha.validacao.ValidadorSenha;
 import org.example.Logger.Operacao;
 import org.slf4j.LoggerFactory;
-import sistemalogin.trabalhofinal.Dao.DAO;
-import sistemalogin.trabalhofinal.Model.Usuario;
-import sistemalogin.trabalhofinal.View.Observer;
+import sistemalogin.trabalhofinal.dao.DAO;
+import sistemalogin.trabalhofinal.model.Usuario;
+import sistemalogin.trabalhofinal.view.Observer;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import sistemalogin.trabalhofinal.View.TelaCadastroUsuario;
-import sistemalogin.trabalhofinal.View.TelaPrincipal;
+
+import sistemalogin.trabalhofinal.view.TelaPrincipal;
 import org.example.Logger.Logger;
-import org.example.Logger.CSVLogger;
 import org.example.Logger.JSONLogger;
 
 import javax.swing.*;

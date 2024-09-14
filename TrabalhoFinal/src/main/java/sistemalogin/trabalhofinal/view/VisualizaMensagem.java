@@ -2,22 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package sistemalogin.trabalhofinal.View;
+package sistemalogin.trabalhofinal.view;
 
-import sistemalogin.trabalhofinal.Presenter.Sistema;
+import sistemalogin.trabalhofinal.presenter.Sistema;
 
 /**
  *
  * @author Ruan Ribeiro
  */
-public class visualizaMensagem extends javax.swing.JInternalFrame implements Observer{
+public class VisualizaMensagem extends javax.swing.JInternalFrame implements Observer{
     Sistema sistema;
-    mensagem mensagem;
+    Mensagem mensagem;
     
-    public visualizaMensagem(mensagem novaMensagem) {
+    public VisualizaMensagem(Mensagem novaMensagem) {
         initComponents();
         this.sistema = sistema;
-        mensagem = new mensagem();
+        mensagem = new Mensagem();
         mensagem = novaMensagem;
     }
 

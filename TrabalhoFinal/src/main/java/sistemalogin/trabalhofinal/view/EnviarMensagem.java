@@ -2,22 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package sistemalogin.trabalhofinal.View;
+package sistemalogin.trabalhofinal.view;
 
-import sistemalogin.trabalhofinal.Presenter.Sistema;
+import sistemalogin.trabalhofinal.presenter.Sistema;
 
 /**
  *
  * @author Ruan Ribeiro
  */
-public class enviarMensagem extends javax.swing.JInternalFrame implements Observer{
+public class EnviarMensagem extends javax.swing.JInternalFrame implements Observer{
     Sistema sistema;
-    selecaoUsuarioMensagem selecaoUsuario;
+    SelecaoUsuarioMensagem selecaoUsuario;
             
-    public enviarMensagem(selecaoUsuarioMensagem selecaoUsuarioMensagem) {
+    public EnviarMensagem(SelecaoUsuarioMensagem selecaoUsuarioMensagem) {
         initComponents();
         this.sistema = sistema;
-        selecaoUsuario = new selecaoUsuarioMensagem();
+        selecaoUsuario = new SelecaoUsuarioMensagem();
         selecaoUsuario = selecaoUsuarioMensagem;
     }
     
@@ -39,7 +39,7 @@ public class enviarMensagem extends javax.swing.JInternalFrame implements Observ
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Enviar Mensagem");
+        setTitle("Enviar mensagem");
 
         jLabel1.setText("Destinatário:");
 

@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package sistemalogin.trabalhofinal.View;
+package sistemalogin.trabalhofinal.view;
 
 /**
  *
  * @author Ruan Ribeiro
  */
-public class selecaoUsuarioMensagem extends javax.swing.JInternalFrame {
+public class SelecaoUsuarioMensagem extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form selecaoUsuarioMensagem
      */
-    public selecaoUsuarioMensagem() {
+    public SelecaoUsuarioMensagem() {
         initComponents();
     }
 

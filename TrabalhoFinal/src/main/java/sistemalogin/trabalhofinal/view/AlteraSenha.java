@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package sistemalogin.trabalhofinal.View;
+package sistemalogin.trabalhofinal.view;
 
-import sistemalogin.trabalhofinal.Presenter.Sistema;
+import sistemalogin.trabalhofinal.presenter.Sistema;
     
     
 /**
  *
  * @author Ruan Ribeiro
  */
-public class alteraSenha extends javax.swing.JInternalFrame implements Observer{
+public class AlteraSenha extends javax.swing.JInternalFrame implements Observer{
     Sistema sistema;
    
     
-    public alteraSenha(Sistema sistema)
+    public AlteraSenha(Sistema sistema)
     {
         initComponents();
         this.sistema = sistema;

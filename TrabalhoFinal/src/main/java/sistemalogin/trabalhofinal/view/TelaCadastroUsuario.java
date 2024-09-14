@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package sistemalogin.trabalhofinal.View;
-import sistemalogin.trabalhofinal.Presenter.Sistema;
-import sistemalogin.trabalhofinal.View.Observer;
+package sistemalogin.trabalhofinal.view;
+import sistemalogin.trabalhofinal.presenter.Sistema;
+
 /**
  *
  * @author Ruan Ribeiro
