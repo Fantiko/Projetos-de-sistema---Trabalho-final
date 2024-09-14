@@ -13,7 +13,7 @@ import sistemalogin.trabalhofinal.presenter.Sistema;
 public class AutorizaUsuario extends javax.swing.JInternalFrame implements Observer{
     Sistema sistema;
     
-    public AutorizaUsuario() {
+    public AutorizaUsuario(Sistema sistema) {
         initComponents();
         this.sistema = sistema;
         
