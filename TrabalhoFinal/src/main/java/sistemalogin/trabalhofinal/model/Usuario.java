@@ -3,6 +3,7 @@ package sistemalogin.trabalhofinal.model;
 
 import sistemalogin.trabalhofinal.mensagem.Msg;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class Usuario {
     private String nome;
     private String senha;
 
-    //private final LocalDate dataCadastro;
+    private final LocalDate dataCadastro;
 
     private double notificacoesRecebidas;
     private double notificacoesLidas;
@@ -25,9 +26,9 @@ public class Usuario {
 
 
     //-------------------------
-//    public LocalDate getDataCadastro() {
-//        return dataCadastro;
-//    }
+   public String getDataCadastro() {
+       return dataCadastro.toString();
+   }
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -65,14 +66,14 @@ public class Usuario {
     }
 //-------------------------
 
-    public Usuario(int id , String nome, String senha, double notificacoesLidas, double notificacoesRecebidas, String tipo, Boolean aprovado) {
+    public Usuario(int id , String nome, String senha, double notificacoesLidas, double notificacoesRecebidas, String tipo, Boolean aprovado, LocalDate dataCriacao) {
         this.id = id;
         this.nome = nome;
         this.senha = senha;
         this.mensagens = new ArrayList<>();
         this.notificacoesLidas = notificacoesLidas;
         this.notificacoesRecebidas = notificacoesRecebidas;
-        //this.dataCadastro = LocalDate.now();
+        this.dataCadastro = dataCriacao;
 
         if ("adm".equalsIgnoreCase(tipo)){
             this.estado = new Adm(this);
@@ -96,6 +97,8 @@ public class Usuario {
         this.mensagens = new ArrayList<>();
 
         this.aprovado = isPrimeiroCadastro;
+
+        this.dataCadastro = LocalDate.now();
 
         this.estado = isPrimeiroCadastro ? new Adm(this) : new User(this);
     }

@@ -3,6 +3,7 @@ package sistemalogin.trabalhofinal.dao;
 import sistemalogin.trabalhofinal.model.Usuario;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
@@ -13,8 +14,8 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     private static ResultSet resultSet = null;
 
     private static final String CADASTRAR_CLIENTE = " INSERT INTO Usuario "
-            + " (id, nome, senha, notificacoesLidas, notificacoesRecebidas, tipo, aprovado)"
-            + " VALUES (NULL, ?, ?, ?, ?, ?, ?)";
+            + " (id, nome, senha, notificacoesLidas, notificacoesRecebidas, tipo, aprovado, criacaoData)"
+            + " VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)";
 
     private static final String CONSULTAR_CLIENTE = " SELECT * FROM Usuario "
             + " WHERE id = ? ";
@@ -36,14 +37,14 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     private static final String LISTAR_CLIENTES = " SELECT * FROM Usuario "
             + " WHERE 1 = 1 ";
 
-    private static final String CONSULTAR_USUARIO = " SELECT id, nome, senha, notificacoesLidas, notificacoesRecebidas, tipo, aprovado "
+    private static final String CONSULTAR_USUARIO = " SELECT * "
             + " FROM USUARIO "
             + " WHERE nome = ? "
             + " AND senha = ? ";
 
     private static final String IS_EMPTY = "SELECT EXISTS (SELECT 1 FROM Usuario)";
 
-    private static final String LISTAR_CLIENTES_NAO_APROVADOS = "SELECT id, nome, senha, notificacoesLidas, notificacoesRecebidas, tipo, aprovado"
+    private static final String LISTAR_CLIENTES_NAO_APROVADOS = "SELECT *"
             + " FROM Usuario"
             + " WHERE aprovado = false";
 
@@ -100,6 +101,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
             preparedStatement.setDouble(i++, usuario.getNotificacoesRecebidas());
             preparedStatement.setString(i++, usuario.getNomeEstado());
             preparedStatement.setBoolean(i++, usuario.isAprovado());
+            preparedStatement.setString(i++,usuario.getDataCadastro());
             preparedStatement.executeUpdate();  // Executa a atualização no banco
 
         } catch (SQLException e)
@@ -147,7 +149,8 @@ public class UsuarioDAOSQLite implements UsuarioDAO
                         resultSet.getDouble("notificacoesLidas"),
                         resultSet.getDouble("notificacoesRecebidas"),
                         resultSet.getString("tipo"),
-                        resultSet.getBoolean("aprovado")
+                        resultSet.getBoolean("aprovado"),
+                        LocalDate.parse(resultSet.getString("criacaoData"))
                 );
             }
 
@@ -252,7 +255,8 @@ public class UsuarioDAOSQLite implements UsuarioDAO
                         resultSet.getDouble("notificacoesLidas"),               // notificações lidas
                         resultSet.getDouble("notificacoesRecebidas"),           // notificações recebidas
                         resultSet.getString("tipo"),              // nomeEstado
-                        resultSet.getBoolean("aprovado")            // aprovado
+                        resultSet.getBoolean("aprovado"),
+                        LocalDate.parse(resultSet.getString("criacaoData"))
                 );
                 usuarios.add(usuario);
             }
@@ -292,12 +296,13 @@ public class UsuarioDAOSQLite implements UsuarioDAO
             {
                 Usuario usuario = new Usuario(
                         resultSet.getInt("id"),
-                        resultSet.getString("nome"),                // nome
-                        resultSet.getString("senha"),               // senha
-                        resultSet.getDouble("notificacoesLidas"),               // notificações lidas
-                        resultSet.getDouble("notificacoesRecebidas"),           // notificações recebidas
-                        resultSet.getString("tipo"),              // nomeEstado
-                        resultSet.getBoolean("aprovado")            // aprovado
+                        resultSet.getString("nome"),
+                        resultSet.getString("senha"),
+                        resultSet.getDouble("notificacoesLidas"),
+                        resultSet.getDouble("notificacoesRecebidas"),
+                        resultSet.getString("tipo"),
+                        resultSet.getBoolean("aprovado"),
+                        LocalDate.parse(resultSet.getString("criacaoData"))
                 );
                 usuariosNaoAprovados.add(usuario);
             }
@@ -344,7 +349,8 @@ public class UsuarioDAOSQLite implements UsuarioDAO
                         resultSet.getDouble("notificacoesLidas"),               // notificações lidas
                         resultSet.getDouble("notificacoesRecebidas"),           // notificações recebidas
                         resultSet.getString("tipo"),              // nomeEstado
-                        resultSet.getBoolean("aprovado")
+                        resultSet.getBoolean("aprovado"),
+                        LocalDate.parse(resultSet.getString("criacaoData"))
                 );
                 
             }

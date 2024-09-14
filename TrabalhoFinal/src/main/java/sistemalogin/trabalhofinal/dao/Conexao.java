@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class Conexao {
     private static Conexao instancia;
     private static String DRIVER = "org.sqlite.JDBC";
-    //private static String BD = "jdbc:sqlite:TrabalhoFinal/src/main/java/sistemalogin/trabalhofinal/resources/LoginDB";
-    private static String BD = "jdbc:sqlite:src/main/java/sistemalogin/trabalhofinal/resources/LoginDB";
+    private static String BD = "jdbc:sqlite:TrabalhoFinal/src/main/java/sistemalogin/trabalhofinal/resources/LoginDB";
+    //private static String BD = "jdbc:sqlite:src/main/java/sistemalogin/trabalhofinal/resources/LoginDB";
     private static Connection conexao;
 
 
