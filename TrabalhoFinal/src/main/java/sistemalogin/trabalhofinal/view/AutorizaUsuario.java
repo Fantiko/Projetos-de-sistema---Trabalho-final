@@ -54,9 +54,17 @@ public class AutorizaUsuario extends javax.swing.JInternalFrame implements Obser
 
             },
             new String [] {
-                "Usuários"
+                "ID", "Usuários"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabelaAutoriza);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -166,4 +166,10 @@ public class Sistema
             abreOpcao.setVisible(true);
         }
     }
+    
+    public void alterarSenha(String senhaNova, String senhaAtual){
+        if((usuarioLogado.getSenha()) == senhaAtual){
+            usuarioLogado.setSenha(senhaNova);
+        }
+    }
 }

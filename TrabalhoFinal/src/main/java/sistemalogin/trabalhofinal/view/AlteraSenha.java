@@ -91,10 +91,10 @@ public class AlteraSenha extends javax.swing.JInternalFrame implements Observer{
 
     private void btnAlteraSenhaActionPerformed(java.awt.event.ActionEvent evt)
     {//GEN-FIRST:event_btnAlteraSenhaActionPerformed
-        setVisible(false);
-        novaSenha.setText("");
-        senhaAtual.setText("");
-
+        //setVisible(false);
+        //novaSenha.setText("");
+        //senhaAtual.setText("");
+        sistema.alterarSenha(novaSenha.getText(), senhaAtual.getText());
 
     }//GEN-LAST:event_btnAlteraSenhaActionPerformed
 

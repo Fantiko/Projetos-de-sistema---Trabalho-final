@@ -39,14 +39,14 @@ public class SelecaoUsuarioMensagem extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Usuário"
+                "ID", "Usuário"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false
+                true, false
             };
 
             public Class getColumnClass(int columnIndex) {
