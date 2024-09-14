@@ -21,14 +21,15 @@ public class DAO {
             + " WHERE id = ? ";
 
 
-    private static final String ALTERAR_CLIENTE = " UPDATE Usuario SET"
-            + " nome = ? "
-            + " senha = ? "
-            + " notificacoesLidas = ? "
-            + " notificacoesRecebidas = ? "
-            + " tipo = ? "
-            + " aprovado = ? "
-            + " WHERE id = ? ";
+    private static final String ALTERAR_CLIENTE = "UPDATE Usuario SET"
+            + " nome = ?,"
+            + " senha = ?,"
+            + " notificacoesLidas = ?,"
+            + " notificacoesRecebidas = ?,"
+            + " tipo = ?,"
+            + " aprovado = ?"
+            + " WHERE id = ?";
+
 
 
     private static final String EXCLUIR_CLIENTE = " DELETE FROM Usuario "
@@ -63,13 +64,13 @@ public class DAO {
 
             preparedStatement.executeUpdate();  // Executa a atualização no banco
 
-            connection.commit();  // Apenas se auto-commit estiver desativado
+            connection.commit();
 
         } catch (SQLException e) {
             e.printStackTrace();
             try {
                 if (connection != null) {
-                    connection.rollback();  // Reverte a transação em caso de erro
+                    connection.rollback();
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -126,7 +127,7 @@ public class DAO {
         return usuario;
     }
 
-    public void alterarUsuario(String id, Usuario usuario){
+    public void alterarUsuario(int id, Usuario usuario){
         Connection connection = Conexao.getInstance().abrirConexao();
 
         String query = ALTERAR_CLIENTE;
@@ -140,7 +141,7 @@ public class DAO {
             preparedStatement.setDouble(i++,usuario.getNotificacoesRecebidas());
             preparedStatement.setString(i++,usuario.getNomeEstado());
             preparedStatement.setBoolean(i++,usuario.isAprovado());
-            preparedStatement.setString(i++, id);
+            preparedStatement.setInt(i++, id);
 
             preparedStatement.execute();
             connection.commit();
@@ -153,9 +154,9 @@ public class DAO {
         }
 
 
-    }*/
+    }
 
-    public void excluirUsuario(String id){
+    public void excluirUsuario(int id){
         Connection connection = Conexao.getInstance().abrirConexao();
 
         String query = EXCLUIR_CLIENTE;
@@ -164,7 +165,7 @@ public class DAO {
             preparedStatement = connection.prepareStatement(query);
             int i = 1;
 
-            preparedStatement.setString(i++, id);
+            preparedStatement.setInt(i++, id);
 
             preparedStatement.execute();
             connection.commit();
@@ -251,9 +252,6 @@ public class DAO {
         }
         return usuario;
     }
-
-
-
 
     private void fecharConexao() {
             try {
