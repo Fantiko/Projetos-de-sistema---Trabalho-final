@@ -22,14 +22,15 @@ public class UsuarioDAOSQLite implements UsuarioDAO
             + " WHERE id = ? ";
 
 
-    private static final String ALTERAR_CLIENTE = " UPDATE Usuario SET"
-            + " nome = ? "
-            + " senha = ? "
-            + " notificacoesLidas = ? "
-            + " notificacoesRecebidas = ? "
-            + " tipo = ? "
-            + " aprovado = ? "
-            + " WHERE id = ? ";
+    private static final String ALTERAR_CLIENTE = "UPDATE Usuario SET"
+            + " nome = ?,"
+            + " senha = ?,"
+            + " notificacoesLidas = ?,"
+            + " notificacoesRecebidas = ?,"
+            + " tipo = ?,"
+            + " aprovado = ?"
+            + " WHERE id = ?";
+
 
 
     private static final String EXCLUIR_CLIENTE = " DELETE FROM Usuario "
@@ -43,10 +44,36 @@ public class UsuarioDAOSQLite implements UsuarioDAO
             + " WHERE nome = ? "
             + " AND senha = ? ";
 
+    private static final String IS_EMPTY = "SELECT EXISTS (SELECT 1 FROM Usuario)";
+
+
     public UsuarioDAOSQLite() {
 
     }
 
+    @Override
+    public boolean isEmpty() throws Exception {
+        Connection connection = Conexao.getInstance().abrirConexao();
+
+        String query = IS_EMPTY;
+
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                return resultSet.getBoolean(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Erro ao verificar se a tabela está vazia.");
+        }finally {
+            fecharConexao();
+        }
+
+        return false;
+    }
+    
     @Override
     public void cadastrarUsuario(Usuario usuario) {
         Connection connection = Conexao.getInstance().abrirConexao();
@@ -65,13 +92,13 @@ public class UsuarioDAOSQLite implements UsuarioDAO
 
             preparedStatement.executeUpdate();  // Executa a atualização no banco
 
-            connection.commit();  // Apenas se auto-commit estiver desativado
+            connection.commit();
 
         } catch (SQLException e) {
             e.printStackTrace();
             try {
                 if (connection != null) {
-                    connection.rollback();  // Reverte a transação em caso de erro
+                    connection.rollback();
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -129,7 +156,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     }
 
     @Override
-    public void alterarUsuario(String id, Usuario usuario){
+    public void alterarUsuario(int id, Usuario usuario){
         Connection connection = Conexao.getInstance().abrirConexao();
 
         String query = ALTERAR_CLIENTE;
@@ -143,7 +170,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
             preparedStatement.setDouble(i++,usuario.getNotificacoesRecebidas());
             preparedStatement.setString(i++,usuario.getNomeEstado());
             preparedStatement.setBoolean(i++,usuario.isAprovado());
-            preparedStatement.setString(i++, id);
+            preparedStatement.setInt(i++, id);
 
             preparedStatement.execute();
             connection.commit();
@@ -159,7 +186,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     }
 
     @Override
-    public void excluirUsuario(String id){
+    public void excluirUsuario(int id){
         Connection connection = Conexao.getInstance().abrirConexao();
 
         String query = EXCLUIR_CLIENTE;
@@ -168,7 +195,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
             preparedStatement = connection.prepareStatement(query);
             int i = 1;
 
-            preparedStatement.setString(i++, id);
+            preparedStatement.setInt(i++, id);
 
             preparedStatement.execute();
             connection.commit();
@@ -257,6 +284,8 @@ public class UsuarioDAOSQLite implements UsuarioDAO
         }
         return usuario;
     }
+
+
 
 
 
