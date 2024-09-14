@@ -12,5 +12,6 @@ public interface UsuarioDAO
     void excluirUsuario(int id);
     ArrayList<Usuario> listarUsuarios() throws Exception;
     Usuario logarUsuario(String nomeUsuario, String senhaUsuario) throws Exception;
+    public boolean isEmpty() throws Exception;
     void fecharConexao();
 }

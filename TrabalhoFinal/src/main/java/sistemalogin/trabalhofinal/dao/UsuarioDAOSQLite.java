@@ -44,10 +44,36 @@ public class UsuarioDAOSQLite implements UsuarioDAO
             + " WHERE nome = ? "
             + " AND senha = ? ";
 
+    private static final String IS_EMPTY = "SELECT EXISTS (SELECT 1 FROM Usuario)";
+
+
     public UsuarioDAOSQLite() {
 
     }
 
+    @Override
+    public boolean isEmpty() throws Exception {
+        Connection connection = Conexao.getInstance().abrirConexao();
+
+        String query = IS_EMPTY;
+
+        try {
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()){
+                return resultSet.getBoolean(1);
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new Exception("Erro ao verificar se a tabela está vazia.");
+        }finally {
+            fecharConexao();
+        }
+
+        return false;
+    }
+    
     @Override
     public void cadastrarUsuario(Usuario usuario) {
         Connection connection = Conexao.getInstance().abrirConexao();
@@ -258,6 +284,8 @@ public class UsuarioDAOSQLite implements UsuarioDAO
         }
         return usuario;
     }
+
+
 
 
 
