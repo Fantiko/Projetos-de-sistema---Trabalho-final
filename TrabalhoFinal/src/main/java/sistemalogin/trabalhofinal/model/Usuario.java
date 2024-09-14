@@ -1,9 +1,8 @@
-package sistemalogin.trabalhofinal.Model;
+package sistemalogin.trabalhofinal.model;
 
 
-import sistemalogin.trabalhofinal.Mensagem.Mesagem;
+import sistemalogin.trabalhofinal.mensagem.Mesagem;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

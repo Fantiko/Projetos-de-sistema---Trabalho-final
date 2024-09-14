@@ -2,11 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/MDIApplication.java to edit this template
  */
-package sistemalogin.trabalhofinal.View;
+package sistemalogin.trabalhofinal.view;
 
-import sistemalogin.trabalhofinal.View.Observer;
-import sistemalogin.trabalhofinal.Presenter.Sistema;
-import sistemalogin.trabalhofinal.View.TelaCadastroUsuario;
+import sistemalogin.trabalhofinal.presenter.Sistema;
+
 /**
  *
  * @author Ruan Ribeiro
@@ -15,30 +14,30 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
     
     private Sistema sistema; 
     public TelaCadastroUsuario telaCadastroUsuario;
-    private alteraSenha alterarSenha;
-    private autorizaUsuario autorizaUsuario;
-    private buscaUsuario buscaUsuario;
-    private enviarMensagem enviarMensagem;
-    private mensagem mensagem;
-    private telaLogin telaLogin;
-    private visualizaMensagem visualizaMensagem;
-    private telaLog telaLog;
-    private selecaoUsuarioMensagem selecaoUsuarioMensagem; 
+    private AlteraSenha alterarSenha;
+    private AutorizaUsuario autorizaUsuario;
+    private BuscaUsuario buscaUsuario;
+    private EnviarMensagem enviarMensagem;
+    private Mensagem mensagem;
+    private TelaLogin telaLogin;
+    private VisualizaMensagem visualizaMensagem;
+    private TelaLog telaLog;
+    private SelecaoUsuarioMensagem selecaoUsuarioMensagem;
     
     
     public TelaPrincipal(Sistema sistema) {
         initComponents();
         this.sistema = sistema;
         telaCadastroUsuario = new TelaCadastroUsuario();
-        alterarSenha = new alteraSenha();
-        autorizaUsuario = new autorizaUsuario();
-        selecaoUsuarioMensagem = new selecaoUsuarioMensagem();
-        buscaUsuario = new buscaUsuario(telaCadastroUsuario);
-        enviarMensagem = new enviarMensagem(selecaoUsuarioMensagem);
-        mensagem = new mensagem();
-        telaLogin = new telaLogin(telaCadastroUsuario);
-        visualizaMensagem = new visualizaMensagem(mensagem);
-        telaLog = new telaLog();
+        alterarSenha = new AlteraSenha(sistema);
+        autorizaUsuario = new AutorizaUsuario();
+        selecaoUsuarioMensagem = new SelecaoUsuarioMensagem();
+        buscaUsuario = new BuscaUsuario(telaCadastroUsuario);
+        enviarMensagem = new EnviarMensagem(selecaoUsuarioMensagem);
+        mensagem = new Mensagem();
+        telaLogin = new TelaLogin(telaCadastroUsuario, sistema);
+        visualizaMensagem = new VisualizaMensagem(mensagem);
+        telaLog = new TelaLog(sistema);
         
         
         addComponentsToMainPane();
@@ -199,9 +198,9 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
 
         menuBar.add(jMenu4);
 
-        jMenu1.setText("Enviar Mensagem");
+        jMenu1.setText("Enviar mensagem");
 
-        abreEnviarMensagem.setText("Enviar Mensagem");
+        abreEnviarMensagem.setText("Enviar mensagem");
         abreEnviarMensagem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 abreEnviarMensagemActionPerformed(evt);

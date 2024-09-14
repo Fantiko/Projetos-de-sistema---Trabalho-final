@@ -2,20 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package sistemalogin.trabalhofinal.View;
-import sistemalogin.trabalhofinal.Presenter.Sistema;
-import sistemalogin.trabalhofinal.View.Observer;
-import sistemalogin.trabalhofinal.View.TelaPrincipal;
+package sistemalogin.trabalhofinal.view;
+import sistemalogin.trabalhofinal.presenter.Sistema;
 
 /**
  *
  * @author Ruan Ribeiro
  */
-public class telaLogin extends javax.swing.JInternalFrame implements Observer{
+public class TelaLogin extends javax.swing.JInternalFrame implements Observer{
     Sistema sistema;
     TelaCadastroUsuario telaCadastroUsuario;
     
-    public telaLogin(TelaCadastroUsuario novaTelaUsuario) {
+    public TelaLogin(TelaCadastroUsuario novaTelaUsuario, Sistema sistema) {
         initComponents();
         this.sistema = sistema;
         setVisible(true);
@@ -101,8 +99,12 @@ public class telaLogin extends javax.swing.JInternalFrame implements Observer{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void acessoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acessoUsuarioActionPerformed
-        
+    private void acessoUsuarioActionPerformed(java.awt.event.ActionEvent evt)
+    {//GEN-FIRST:event_acessoUsuarioActionPerformed
+        String nome = nomeLogin.getText();
+        String senha = senhaLogin.getText();
+
+        sistema.logar(nome, senha);
     }//GEN-LAST:event_acessoUsuarioActionPerformed
 
     private void novoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoUsuarioActionPerformed

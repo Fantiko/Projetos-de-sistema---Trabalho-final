@@ -2,22 +2,30 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package sistemalogin.trabalhofinal.View;
+package sistemalogin.trabalhofinal.view;
+
+import org.example.Logger.CSVLogger;
+import org.example.Logger.JSONLogger;
+import sistemalogin.trabalhofinal.presenter.Sistema;
 
 /**
  *
  * @author Ruan Ribeiro
  */
-public class telaLog extends javax.swing.JInternalFrame implements Observer{
+public class TelaLog extends javax.swing.JInternalFrame implements Observer{
 
-    
-    public telaLog() {
-        
+    private Sistema sistema;
+    public TelaLog(Sistema sistema)
+    {
+        this.sistema = sistema;
         initComponents();
     }
 
     @Override
-    public void atualizar(){}
+    public void atualizar()
+    {
+
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -71,8 +79,17 @@ public class telaLog extends javax.swing.JInternalFrame implements Observer{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt)
+    {//GEN-FIRST:event_btnSalvarActionPerformed
+        String formatoLogSelecionado = (String) this.formatoLog.getSelectedItem();
+
+        if(formatoLogSelecionado.equals("JSON"))
+        {
+            sistema.setLogger(new JSONLogger());
+        } else if (formatoLogSelecionado.equals("CSV"))
+        {
+            sistema.setLogger(new CSVLogger());
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
 

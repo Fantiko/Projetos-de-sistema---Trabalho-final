@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
-package sistemalogin.trabalhofinal.View;
+package sistemalogin.trabalhofinal.view;
 
-import sistemalogin.trabalhofinal.Presenter.Sistema;
+import sistemalogin.trabalhofinal.presenter.Sistema;
 
 /**
  *
  * @author Ruan Ribeiro
  */
-public class mensagem extends javax.swing.JInternalFrame implements Observer{
+public class Mensagem extends javax.swing.JInternalFrame implements Observer{
     Sistema sistema;
     /**
      * Creates new form mensagem
      */
-    public mensagem() {
+    public Mensagem() {
         initComponents();
         this.sistema = sistema;
         
@@ -39,11 +39,11 @@ public class mensagem extends javax.swing.JInternalFrame implements Observer{
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Mensagem");
+        setTitle("mensagem");
 
         jLabel1.setText("Título");
 
-        jLabel2.setText("Mensagem:");
+        jLabel2.setText("mensagem:");
 
         textoMensagem.setEditable(false);
         textoMensagem.setColumns(20);
