@@ -15,4 +15,5 @@ public interface UsuarioDAO
     Usuario logarUsuario(String nomeUsuario, String senhaUsuario) throws Exception;
     public boolean isEmpty() throws Exception;
     void fecharConexao();
+    void autorizarUsuario(int id);
 }

@@ -44,8 +44,13 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     private static final String IS_EMPTY = "SELECT EXISTS (SELECT 1 FROM Usuario)";
 
     private static final String LISTAR_CLIENTES_NAO_APROVADOS = "SELECT id, nome, senha, notificacoesLidas, notificacoesRecebidas, tipo, aprovado"
-            + "FROM Usuario"
-            + "WHERE aprovado = false";
+            + " FROM Usuario"
+            + " WHERE aprovado = false";
+
+    private static final String AUTORIZAR_USUARIO = "UPDATE Usuario SET" +
+            " aprovado = true" +
+            " WHERE id = ?";
+
     public UsuarioDAOSQLite()
     {
 
@@ -209,7 +214,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
 
             preparedStatement.setInt(i++, id);
 
-            preparedStatement.execute();
+            preparedStatement.executeUpdate();
 
 
         } catch (SQLException e)
@@ -384,5 +389,26 @@ public class UsuarioDAOSQLite implements UsuarioDAO
 
     }
 
+    public void autorizarUsuario(int id)
+    {
+        Connection connection = Conexao.getInstance().abrirConexao();
 
+        String query = AUTORIZAR_USUARIO;
+
+        try
+        {
+            preparedStatement = connection.prepareStatement(query);
+            int i = 1;
+            preparedStatement.setString(i++, String.valueOf(id));
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        } finally
+        {
+            fecharConexao();
+        }
+    }
 }
