@@ -15,10 +15,10 @@ public class alteraSenha extends javax.swing.JInternalFrame implements Observer{
     Sistema sistema;
    
     
-    public alteraSenha() {
+    public alteraSenha(Sistema sistema)
+    {
         initComponents();
         this.sistema = sistema;
-        
     }
     
     @Override
@@ -89,10 +89,13 @@ public class alteraSenha extends javax.swing.JInternalFrame implements Observer{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAlteraSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlteraSenhaActionPerformed
+    private void btnAlteraSenhaActionPerformed(java.awt.event.ActionEvent evt)
+    {//GEN-FIRST:event_btnAlteraSenhaActionPerformed
         setVisible(false);
         novaSenha.setText("");
         senhaAtual.setText("");
+
+
     }//GEN-LAST:event_btnAlteraSenhaActionPerformed
 
 

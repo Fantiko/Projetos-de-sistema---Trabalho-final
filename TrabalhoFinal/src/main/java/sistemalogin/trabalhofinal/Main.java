@@ -41,5 +41,8 @@ public class Main {
             System.out.println("Erro ao cadastrar o usuário.");
         }
 
+
+        TelaPrincipal telaPrincipal = new TelaPrincipal(new Sistema());
+        telaPrincipal.setVisible(true);
     }
 }

@@ -153,7 +153,7 @@ public class DAO {
         }
 
 
-    }*/
+    }
 
     public void excluirUsuario(String id){
         Connection connection = Conexao.getInstance().abrirConexao();
