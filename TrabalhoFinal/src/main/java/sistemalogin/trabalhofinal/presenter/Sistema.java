@@ -2,7 +2,8 @@ package sistemalogin.trabalhofinal.presenter;
 
 import org.example.Logger.Operacao;
 import org.slf4j.LoggerFactory;
-import sistemalogin.trabalhofinal.dao.DAO;
+import sistemalogin.trabalhofinal.dao.UsuarioDAO;
+import sistemalogin.trabalhofinal.dao.UsuarioDAOSQLite;
 import sistemalogin.trabalhofinal.model.Usuario;
 import sistemalogin.trabalhofinal.view.Observer;
 
@@ -23,7 +24,7 @@ public class Sistema
     private ArrayList<Observer> telas;
     private Logger logger;
     private Usuario usuarioLogado;
-    private DAO dao;
+    private UsuarioDAO usuarioDAO;
     public TelaPrincipal telaPrincipal;
 
     public Sistema() 
@@ -31,7 +32,7 @@ public class Sistema
         telas = new ArrayList<Observer>();
         telaPrincipal = new TelaPrincipal(this);
         logger = new JSONLogger();
-        dao = new DAO();
+        usuarioDAO = new UsuarioDAOSQLite();
         addTela(telaPrincipal);
     }
     
@@ -70,7 +71,7 @@ public class Sistema
 
         try
         {
-            usuarioLogado = dao.logarUsuario(nome, senha);
+            usuarioLogado = usuarioDAO.logarUsuario(nome, senha);
         } catch (Exception e)
         {
             if(usuarioLogado == null)

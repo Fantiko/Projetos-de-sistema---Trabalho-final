@@ -6,12 +6,13 @@ package sistemalogin.trabalhofinal;
 
 import sistemalogin.trabalhofinal.presenter.Sistema;
 import sistemalogin.trabalhofinal.view.TelaPrincipal;
-import sistemalogin.trabalhofinal.dao.DAO;
+import sistemalogin.trabalhofinal.dao.UsuarioDAOSQLite;
 import sistemalogin.trabalhofinal.model.Usuario;
 
 /**
  *
  * @author kaios
+ * @author Gustavo Provete de Andrade
  */
 public class Main {
 
@@ -30,11 +31,11 @@ public class Main {
         );
 
         // Criando o objeto da classe que manipula o banco de dados
-        DAO dao = new DAO();
+        UsuarioDAOSQLite usuarioDAOSQLite = new UsuarioDAOSQLite();
 
         try {
             // Cadastrando o usuário no banco de dados
-            dao.cadastrarUsuario(usuario);
+            usuarioDAOSQLite.cadastrarUsuario(usuario);
             System.out.println("Usuário cadastrado com sucesso!");
         } catch (Exception e) {
             e.printStackTrace();

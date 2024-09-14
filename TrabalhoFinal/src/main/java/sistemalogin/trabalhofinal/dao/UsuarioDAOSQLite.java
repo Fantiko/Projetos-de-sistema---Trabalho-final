@@ -6,7 +6,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
-public class DAO {
+public class UsuarioDAOSQLite implements UsuarioDAO
+{
 
     private static PreparedStatement preparedStatement= null;
     private static ResultSet resultSet = null;
@@ -42,10 +43,11 @@ public class DAO {
             + " WHERE nome = ? "
             + " AND senha = ? ";
 
-    public DAO() {
+    public UsuarioDAOSQLite() {
 
     }
 
+    @Override
     public void cadastrarUsuario(Usuario usuario) {
         Connection connection = Conexao.getInstance().abrirConexao();
         String query = CADASTRAR_CLIENTE;
@@ -89,7 +91,7 @@ public class DAO {
         }
     }
 
-
+    @Override
     public Usuario consultarUsuario(int id) throws Exception {
         Connection connection = Conexao.getInstance().abrirConexao();
         Usuario usuario = null;
@@ -126,6 +128,7 @@ public class DAO {
         return usuario;
     }
 
+    @Override
     public void alterarUsuario(String id, Usuario usuario){
         Connection connection = Conexao.getInstance().abrirConexao();
 
@@ -155,6 +158,7 @@ public class DAO {
 
     }
 
+    @Override
     public void excluirUsuario(String id){
         Connection connection = Conexao.getInstance().abrirConexao();
 
@@ -179,6 +183,7 @@ public class DAO {
 
     }
 
+    @Override
     public ArrayList<Usuario> listarUsuarios() throws Exception {
         Connection connection = Conexao.getInstance().abrirConexao();
         ArrayList<Usuario> usuarios = new ArrayList<>();
@@ -215,6 +220,7 @@ public class DAO {
         return usuarios;
     }
 
+    @Override
     public Usuario logarUsuario(String nomeUsuario, String senhaUsuario) throws Exception {
         Connection connection = Conexao.getInstance().abrirConexao();
         Usuario usuario = null;
@@ -254,8 +260,8 @@ public class DAO {
 
 
 
-
-    private void fecharConexao() {
+    @Override
+    public void fecharConexao() {
             try {
                 if (resultSet!=null) {
                     resultSet.close();
