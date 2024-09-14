@@ -165,6 +165,17 @@ public class Sistema
         if(usuarioLogado.getNomeEstado().equalsIgnoreCase("adm")){
             abreOpcao.setVisible(true);
         }
+
+    public ArrayList<Usuario> pegarUsuariosNaoAprovados()
+    {
+        try
+        {
+            return usuarioDAO.listarUsuariosNaoAprovados();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return null;
     }
     
     public void alterarSenha(String senhaNova, String senhaAtual){
