@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package sistemalogin.trabalhofinal.view;
+import com.pss.senha.validacao.ValidadorSenha;
 import sistemalogin.trabalhofinal.presenter.Sistema;
+
+import java.util.ArrayList;
 
 /**
  *
@@ -12,7 +15,7 @@ import sistemalogin.trabalhofinal.presenter.Sistema;
 public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements Observer{
     Sistema sistema;
     
-    public TelaCadastroUsuario() {
+    public TelaCadastroUsuario(Sistema sistema) {
         initComponents();
         this.sistema = sistema;
         
@@ -88,8 +91,14 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements O
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void salvarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarUsuarioActionPerformed
-        setVisible(false);
+    private void salvarUsuarioActionPerformed(java.awt.event.ActionEvent evt)
+    {//GEN-FIRST:event_salvarUsuarioActionPerformed
+        String novoNome = nomeUsuario.getText();
+        String novaSenha = senhaUsuario.getText();
+
+        sistema.cadastrarUsuario(novoNome, novaSenha);
+
+
         nomeUsuario.setText("");
         senhaUsuario.setText("");
     }//GEN-LAST:event_salvarUsuarioActionPerformed

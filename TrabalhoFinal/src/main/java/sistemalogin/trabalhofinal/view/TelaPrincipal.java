@@ -28,11 +28,11 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
     public TelaPrincipal(Sistema sistema) {
         initComponents();
         this.sistema = sistema;
-        telaCadastroUsuario = new TelaCadastroUsuario();
+        telaCadastroUsuario = new TelaCadastroUsuario(sistema);
         alterarSenha = new AlteraSenha(sistema);
         autorizaUsuario = new AutorizaUsuario();
         selecaoUsuarioMensagem = new SelecaoUsuarioMensagem();
-        buscaUsuario = new BuscaUsuario(telaCadastroUsuario);
+        buscaUsuario = new BuscaUsuario(telaCadastroUsuario, sistema);
         enviarMensagem = new EnviarMensagem(selecaoUsuarioMensagem);
         mensagem = new Mensagem();
         telaLogin = new TelaLogin(telaCadastroUsuario, sistema);

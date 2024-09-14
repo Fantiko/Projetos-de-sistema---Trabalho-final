@@ -14,10 +14,9 @@ public class BuscaUsuario extends javax.swing.JInternalFrame implements Observer
     Sistema sistema;
     TelaCadastroUsuario telaCadastroUsuario;
     
-    public BuscaUsuario(TelaCadastroUsuario novaTelaUsuario) {
+    public BuscaUsuario(TelaCadastroUsuario novaTelaUsuario, Sistema sistema) {
         initComponents();
         this.sistema = sistema;
-        telaCadastroUsuario = new TelaCadastroUsuario();
         telaCadastroUsuario = novaTelaUsuario;
     }
 

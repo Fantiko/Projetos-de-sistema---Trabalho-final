@@ -20,7 +20,7 @@ public class Usuario {
 
     private List<Mesagem> mensagens;
 
-    private final int id;
+    private int id;
     private boolean aprovado;
 
 
@@ -84,6 +84,16 @@ public class Usuario {
 
         this.aprovado = aprovado;
 
+    }
+
+    public Usuario(String nome, String senha, boolean isPrimeiroCadastro)
+    {
+        this.nome = nome;
+        this.senha = senha;
+
+        this.notificacoesLidas = 0;
+        this.aprovado = false;
+        this.estado = isPrimeiroCadastro ? new Adm(this) : new User(this);
     }
 
 
