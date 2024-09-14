@@ -98,6 +98,7 @@ public class Sistema
             telaPrincipal.setTipoUsuario(usuarioLogado.getNomeEstado());
             telalogin.setVisible(false);
             telaPrincipal.abreOpcaoAdm();
+            notificarTelas();
             
         } else
         {
@@ -161,12 +162,15 @@ public class Sistema
         
     }
     
-    public void abreMenu(JMenu abreOpcao){
-        if(usuarioLogado.getNomeEstado().equalsIgnoreCase("adm")){
+    public void abreMenu(JMenu abreOpcao)
+    {
+        if (usuarioLogado.getNomeEstado().equalsIgnoreCase("adm"))
+        {
             abreOpcao.setVisible(true);
         }
     }
     
+
     public ArrayList<Usuario> pegarUsuariosNaoAprovados()
     {
         try
@@ -200,5 +204,17 @@ public class Sistema
                         JOptionPane.ERROR_MESSAGE);  
         
         }       
+    }
+
+    public void autorizarUsuario(int id)
+    {
+        usuarioDAO.autorizarUsuario(id);
+        notificarTelas();
+    }
+
+    public void rejeitarUsuario(int id)
+    {
+        usuarioDAO.excluirUsuario(id);
+        notificarTelas();
     }
 }
