@@ -4,6 +4,8 @@
 
 package sistemalogin.trabalhofinal;
 
+import sistemalogin.trabalhofinal.Presenter.Sistema;
+import sistemalogin.trabalhofinal.View.TelaPrincipal;
 import sistemalogin.trabalhofinal.Dao.DAO;
 import sistemalogin.trabalhofinal.Model.Usuario;
 
@@ -14,6 +16,8 @@ import sistemalogin.trabalhofinal.Model.Usuario;
 public class Main {
 
     public static void main(String[] args) {
+        
+        Sistema sistema = new Sistema();
         // Criando o objeto da classe Usuario com os dados do usuário
         Usuario usuario = new Usuario(
                 100,
