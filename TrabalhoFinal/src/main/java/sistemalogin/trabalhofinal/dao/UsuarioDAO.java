@@ -8,9 +8,10 @@ public interface UsuarioDAO
 {
     void cadastrarUsuario(Usuario usuario);
     Usuario consultarUsuario(int id) throws Exception;
-    void alterarUsuario(String id, Usuario usuario);
-    void excluirUsuario(String id);
+    void alterarUsuario(int id, Usuario usuario);
+    void excluirUsuario(int id);
     ArrayList<Usuario> listarUsuarios() throws Exception;
     Usuario logarUsuario(String nomeUsuario, String senhaUsuario) throws Exception;
+    public boolean isEmpty() throws Exception;
     void fecharConexao();
 }
