@@ -36,7 +36,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     private static final String LISTAR_CLIENTES = " SELECT * FROM Usuario "
             + " WHERE 1 = 1 ";
 
-    private static final String CONSULTAR_USUARIO = " SELECT nome, senha "
+    private static final String CONSULTAR_USUARIO = " SELECT id, nome, senha, notificacoesLidas, notificacoesRecebidas, tipo, aprovado "
             + " FROM USUARIO "
             + " WHERE nome = ? "
             + " AND senha = ? ";
@@ -294,6 +294,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
                         resultSet.getString("tipo"),              // nomeEstado
                         resultSet.getBoolean("aprovado")
                 );
+                
             }
 
 
@@ -304,6 +305,8 @@ public class UsuarioDAOSQLite implements UsuarioDAO
         {
             fecharConexao();
         }
+       
+        
         if (usuario == null)
         {
             //TRATAR QUE NAO ENCONTROU O USUARIO

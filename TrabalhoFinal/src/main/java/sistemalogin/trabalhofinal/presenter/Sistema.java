@@ -77,17 +77,23 @@ public class Sistema
         {
             if(usuarioLogado == null)
             {
-
                 JOptionPane.showMessageDialog(telaPrincipal,
                         "Login e/ou senha incorretos.",
                         "Erro de Login",
                         JOptionPane.ERROR_MESSAGE);
+                
             }
         }
 
-        if(usuarioLogado != null)
+        if(usuarioLogado.isAprovado())
         {
             this.usuarioLogado = usuarioLogado;
+        } else
+        {
+            JOptionPane.showMessageDialog(telaPrincipal,
+                        "Usuario não aprovado para login.",
+                        "Erro de Login",
+                        JOptionPane.ERROR_MESSAGE);
         }
     }
 
