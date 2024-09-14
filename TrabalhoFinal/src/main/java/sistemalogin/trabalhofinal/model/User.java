@@ -1,4 +1,4 @@
-package sistemalogin.trabalhofinal.Model;
+package sistemalogin.trabalhofinal.model;
 
 public class User extends Estado{
     private boolean aprovado;

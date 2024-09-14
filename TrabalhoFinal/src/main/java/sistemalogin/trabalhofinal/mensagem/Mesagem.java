@@ -1,4 +1,4 @@
-package sistemalogin.trabalhofinal.Mensagem;
+package sistemalogin.trabalhofinal.mensagem;
 
 public class Mesagem {
     private String mensagem;

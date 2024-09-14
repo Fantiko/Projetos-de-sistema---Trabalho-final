@@ -4,10 +4,10 @@
 
 package sistemalogin.trabalhofinal;
 
-import sistemalogin.trabalhofinal.Presenter.Sistema;
-import sistemalogin.trabalhofinal.View.TelaPrincipal;
-import sistemalogin.trabalhofinal.Dao.DAO;
-import sistemalogin.trabalhofinal.Model.Usuario;
+import sistemalogin.trabalhofinal.presenter.Sistema;
+import sistemalogin.trabalhofinal.view.TelaPrincipal;
+import sistemalogin.trabalhofinal.dao.DAO;
+import sistemalogin.trabalhofinal.model.Usuario;
 
 /**
  *

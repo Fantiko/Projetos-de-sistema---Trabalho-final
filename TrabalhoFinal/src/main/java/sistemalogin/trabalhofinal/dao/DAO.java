@@ -1,6 +1,6 @@
-package sistemalogin.trabalhofinal.Dao;
+package sistemalogin.trabalhofinal.dao;
 
-import sistemalogin.trabalhofinal.Model.Usuario;
+import sistemalogin.trabalhofinal.model.Usuario;
 
 import java.sql.*;
 import java.util.ArrayList;
