@@ -1,5 +1,6 @@
 package sistemalogin.trabalhofinal.presenter;
 
+import com.pss.senha.validacao.ValidadorSenha;
 import org.example.Logger.Operacao;
 import org.slf4j.LoggerFactory;
 import sistemalogin.trabalhofinal.dao.UsuarioDAO;
@@ -88,5 +89,50 @@ public class Sistema
         {
             this.usuarioLogado = usuarioLogado;
         }
+    }
+
+    public boolean isSenhaValida(String senha)
+    {
+        boolean isSenhaValida = true;
+
+        ValidadorSenha validadorSenha = new ValidadorSenha();
+
+        ArrayList<String> resultadoValidacao = (ArrayList<String>) validadorSenha.validar(senha);
+
+        if(!resultadoValidacao.isEmpty())
+        {
+            isSenhaValida = false;
+        }
+
+        for(String s : resultadoValidacao)
+        {
+            JOptionPane.showMessageDialog(telaPrincipal
+                    , s
+                    , "Erro de senha"
+                    , JOptionPane.ERROR_MESSAGE);
+        }
+
+        return isSenhaValida;
+    }
+
+    public void cadastrarUsuario(String nome, String senha)
+    {
+        if(!isSenhaValida(senha))
+        {
+            return;
+        }
+
+        try
+        {
+            boolean isPrimeiroUsuario = usuarioDAO.isEmpty();
+            //boolean isPrimeiroUsuario = false;
+
+            Usuario novoUsuario = new Usuario(nome, senha, isPrimeiroUsuario);
+            usuarioDAO.cadastrarUsuario(novoUsuario);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
 }
