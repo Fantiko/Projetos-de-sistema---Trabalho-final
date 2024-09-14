@@ -46,7 +46,10 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
     
     
     @Override
-    public void atualizar(){}
+    public void atualizar()
+    {
+
+    }
     
     public final void addComponentsToMainPane()
     {

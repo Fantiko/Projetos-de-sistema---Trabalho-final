@@ -92,7 +92,11 @@ public class Usuario {
         this.senha = senha;
 
         this.notificacoesLidas = 0;
-        this.aprovado = false;
+        this.notificacoesRecebidas = 0;
+        this.mensagens = new ArrayList<>();
+
+        this.aprovado = isPrimeiroCadastro;
+
         this.estado = isPrimeiroCadastro ? new Adm(this) : new User(this);
     }
 

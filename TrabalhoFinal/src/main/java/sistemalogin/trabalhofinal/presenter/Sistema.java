@@ -91,7 +91,7 @@ public class Sistema
         }
     }
 
-    public boolean validarSenha(String senha)
+    public boolean isSenhaValida(String senha)
     {
         boolean isSenhaValida = true;
 
@@ -117,15 +117,22 @@ public class Sistema
 
     public void cadastrarUsuario(String nome, String senha)
     {
-        if(!validarSenha(senha))
+        if(!isSenhaValida(senha))
         {
             return;
         }
 
-        //TODO verificar se o usuario é o primeiro a ser criado
-        boolean isPrimeiroUsuario = false;
+        try
+        {
+            boolean isPrimeiroUsuario = usuarioDAO.isEmpty();
+            //boolean isPrimeiroUsuario = false;
 
-        Usuario novoUsuario = new Usuario(nome, senha, isPrimeiroUsuario);
-        usuarioDAO.cadastrarUsuario(novoUsuario);
+            Usuario novoUsuario = new Usuario(nome, senha, isPrimeiroUsuario);
+            usuarioDAO.cadastrarUsuario(novoUsuario);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
 }
