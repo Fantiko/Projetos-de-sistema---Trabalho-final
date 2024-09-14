@@ -9,10 +9,10 @@ import java.util.NoSuchElementException;
 public class UsuarioDAOSQLite implements UsuarioDAO
 {
 
-    private static PreparedStatement preparedStatement= null;
+    private static PreparedStatement preparedStatement = null;
     private static ResultSet resultSet = null;
-    private static String DRIVER = "org.sqlite.JDBC";
-    private static String BD = "jdbc:sqlite:LoginDB.db";
+    private static final String DRIVER = "org.sqlite.JDBC";
+    private static final String BD = "jdbc:sqlite:LoginDB.db";
 
     private static final String CADASTRAR_CLIENTE = " INSERT INTO Usuario "
             + " (id, nome, senha, notificacoesLidas, notificacoesRecebidas, tipo, aprovado)"
@@ -22,14 +22,14 @@ public class UsuarioDAOSQLite implements UsuarioDAO
             + " WHERE id = ? ";
 
 
-    private static final String ALTERAR_CLIENTE = " UPDATE Usuario SET"
-            + " nome = ? "
-            + " senha = ? "
-            + " notificacoesLidas = ? "
-            + " notificacoesRecebidas = ? "
-            + " tipo = ? "
-            + " aprovado = ? "
-            + " WHERE id = ? ";
+    private static final String ALTERAR_CLIENTE = "UPDATE Usuario SET"
+            + " nome = ?,"
+            + " senha = ?,"
+            + " notificacoesLidas = ?,"
+            + " notificacoesRecebidas = ?,"
+            + " tipo = ?,"
+            + " aprovado = ?"
+            + " WHERE id = ?";
 
 
     private static final String EXCLUIR_CLIENTE = " DELETE FROM Usuario "
@@ -43,17 +43,50 @@ public class UsuarioDAOSQLite implements UsuarioDAO
             + " WHERE nome = ? "
             + " AND senha = ? ";
 
-    public UsuarioDAOSQLite() {
+    private static final String IS_EMPTY = "SELECT EXISTS (SELECT 1 FROM Usuario)";
+
+
+    public UsuarioDAOSQLite()
+    {
 
     }
 
     @Override
-    public void cadastrarUsuario(Usuario usuario) {
+    public boolean isEmpty() throws Exception
+    {
+        Connection connection = Conexao.getInstance().abrirConexao();
+
+        String query = IS_EMPTY;
+
+        try
+        {
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+
+            boolean isEmpty = !resultSet.getBoolean(1);
+
+            fecharConexao();
+            return isEmpty;
+
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+            throw new Exception("Erro ao verificar se a tabela está vazia.");
+        } finally
+        {
+            fecharConexao();
+        }
+    }
+
+    @Override
+    public void cadastrarUsuario(Usuario usuario)
+    {
         Connection connection = Conexao.getInstance().abrirConexao();
         String query = CADASTRAR_CLIENTE;
 
-        try {
-            preparedStatement = connection.prepareStatement(query);
+        try
+        {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
             int i = 1;
             // NOME, SENHA, LIDAS, RECEBIDAS, TIPO, APROVADO
             preparedStatement.setString(i++, usuario.getNome());
@@ -62,50 +95,46 @@ public class UsuarioDAOSQLite implements UsuarioDAO
             preparedStatement.setDouble(i++, usuario.getNotificacoesRecebidas());
             preparedStatement.setString(i++, usuario.getNomeEstado());
             preparedStatement.setBoolean(i++, usuario.isAprovado());
-
             preparedStatement.executeUpdate();  // Executa a atualização no banco
 
-            connection.commit();  // Apenas se auto-commit estiver desativado
-
-        } catch (SQLException e) {
+        } catch (SQLException e)
+        {
             e.printStackTrace();
-            try {
-                if (connection != null) {
-                    connection.rollback();  // Reverte a transação em caso de erro
+            try
+            {
+                if (connection != null)
+                {
+                    connection.rollback();
                 }
-            } catch (SQLException ex) {
+            } catch (SQLException ex)
+            {
                 ex.printStackTrace();
             }
-        } finally {
+        } finally
+        {
             // Fecha o PreparedStatement e Connection
-            try {
-                if (preparedStatement != null) {
-                    preparedStatement.close();
-                }
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            fecharConexao();
         }
     }
 
     @Override
-    public Usuario consultarUsuario(int id) throws Exception {
+    public Usuario consultarUsuario(int id) throws Exception
+    {
         Connection connection = Conexao.getInstance().abrirConexao();
         Usuario usuario = null;
 
         String query = CONSULTAR_CLIENTE;
 
-        try {
+        try
+        {
             preparedStatement = connection.prepareStatement(query);
             int i = 1;
             preparedStatement.setInt(i++, id);
 
             resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next())
+            {
                 //TODO COLOCA O CONSTRUTOR DO USUARIO DIREITO NISSO
                 usuario = new Usuario(id,
                         resultSet.getString("nome"),
@@ -116,12 +145,17 @@ public class UsuarioDAOSQLite implements UsuarioDAO
                         resultSet.getBoolean("aprovado")
                 );
             }
-        } catch (SQLException e) {
+
+
+        } catch (SQLException e)
+        {
             e.printStackTrace();
-        }finally {
+        } finally
+        {
             fecharConexao();
         }
-        if (usuario == null){
+        if (usuario == null)
+        {
             //TRATAR QUE NAO ENCONTROU O USUARIO
             throw new NoSuchElementException("Usuário com ID " + id + " não encontrado");
         }
@@ -129,29 +163,32 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     }
 
     @Override
-    public void alterarUsuario(int id, Usuario usuario){
+    public void alterarUsuario(int id, Usuario usuario)
+    {
         Connection connection = Conexao.getInstance().abrirConexao();
 
         String query = ALTERAR_CLIENTE;
 
-        try {
+        try
+        {
             preparedStatement = connection.prepareStatement(query);
             int i = 1;
             preparedStatement.setString(i++, usuario.getNome());
-            preparedStatement.setString(i++,usuario.getSenha());
-            preparedStatement.setDouble(i++,usuario.getNotificacoesLidas());
-            preparedStatement.setDouble(i++,usuario.getNotificacoesRecebidas());
-            preparedStatement.setString(i++,usuario.getNomeEstado());
-            preparedStatement.setBoolean(i++,usuario.isAprovado());
-            preparedStatement.setString(i++, id);
+            preparedStatement.setString(i++, usuario.getSenha());
+            preparedStatement.setDouble(i++, usuario.getNotificacoesLidas());
+            preparedStatement.setDouble(i++, usuario.getNotificacoesRecebidas());
+            preparedStatement.setString(i++, usuario.getNomeEstado());
+            preparedStatement.setBoolean(i++, usuario.isAprovado());
+            preparedStatement.setInt(i++, id);
 
             preparedStatement.execute();
-            connection.commit();
 
 
-        } catch (SQLException e) {
+        } catch (SQLException e)
+        {
             e.printStackTrace();
-        }finally {
+        } finally
+        {
             fecharConexao();
         }
 
@@ -159,24 +196,27 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     }
 
     @Override
-    public void excluirUsuario(int id){
+    public void excluirUsuario(int id)
+    {
         Connection connection = Conexao.getInstance().abrirConexao();
 
         String query = EXCLUIR_CLIENTE;
 
-        try {
+        try
+        {
             preparedStatement = connection.prepareStatement(query);
             int i = 1;
 
-            preparedStatement.setString(i++, id);
+            preparedStatement.setInt(i++, id);
 
             preparedStatement.execute();
-            connection.commit();
 
 
-        } catch (SQLException e) {
+        } catch (SQLException e)
+        {
             e.printStackTrace();
-        }finally {
+        } finally
+        {
             fecharConexao();
         }
 
@@ -184,19 +224,22 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     }
 
     @Override
-    public ArrayList<Usuario> listarUsuarios() throws Exception {
+    public ArrayList<Usuario> listarUsuarios() throws Exception
+    {
         Connection connection = Conexao.getInstance().abrirConexao();
         ArrayList<Usuario> usuarios = new ArrayList<>();
 
         String query = LISTAR_CLIENTES;
 
-        try {
+        try
+        {
             preparedStatement = connection.prepareStatement(query);
 
 
             resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next())
+            {
                 Usuario usuario = new Usuario(
                         resultSet.getInt("id"),
                         resultSet.getString("nome"),                // nome
@@ -208,12 +251,17 @@ public class UsuarioDAOSQLite implements UsuarioDAO
                 );
                 usuarios.add(usuario);
             }
-        } catch (SQLException e) {
+
+
+        } catch (SQLException e)
+        {
             e.printStackTrace();
-        }finally {
+        } finally
+        {
             fecharConexao();
         }
-        if (usuarios.size() < 0 ){
+        if (usuarios.size() < 0)
+        {
             //TRATAR QUE NAO ENCONTROU O USUARIO
             throw new Exception("NAO HA CLIENTES");
         }
@@ -221,13 +269,15 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     }
 
     @Override
-    public Usuario logarUsuario(String nomeUsuario, String senhaUsuario) throws Exception {
+    public Usuario logarUsuario(String nomeUsuario, String senhaUsuario) throws Exception
+    {
         Connection connection = Conexao.getInstance().abrirConexao();
         Usuario usuario = null;
 
         String query = CONSULTAR_USUARIO;
 
-        try {
+        try
+        {
             preparedStatement = connection.prepareStatement(query);
             int i = 1;
             preparedStatement.setString(i++, nomeUsuario);
@@ -235,7 +285,8 @@ public class UsuarioDAOSQLite implements UsuarioDAO
 
             resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next())
+            {
                 usuario = new Usuario(
                         resultSet.getInt("id"),
                         resultSet.getString("nome"),                // nome
@@ -246,12 +297,17 @@ public class UsuarioDAOSQLite implements UsuarioDAO
                         resultSet.getBoolean("aprovado")
                 );
             }
-        } catch (SQLException e) {
+
+
+        } catch (SQLException e)
+        {
             e.printStackTrace();
-        }finally {
+        } finally
+        {
             fecharConexao();
         }
-        if (usuario == null){
+        if (usuario == null)
+        {
             //TRATAR QUE NAO ENCONTROU O USUARIO
             throw new Exception("encontrou nao o amigo");
         }
@@ -259,20 +315,24 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     }
 
 
-
     @Override
-    public void fecharConexao() {
-            try {
-                if (resultSet!=null) {
-                    resultSet.close();
-                }
-                if (preparedStatement != null){
-                    preparedStatement.close();
-                }
-                Conexao.getInstance().fecharConexao();
-            } catch (SQLException e) {
-                e.printStackTrace();
+    public void fecharConexao()
+    {
+        try
+        {
+            if (resultSet != null)
+            {
+                resultSet.close();
             }
+            if (preparedStatement != null)
+            {
+                preparedStatement.close();
+            }
+            Conexao.getInstance().fecharConexao();
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
 
     }
 
