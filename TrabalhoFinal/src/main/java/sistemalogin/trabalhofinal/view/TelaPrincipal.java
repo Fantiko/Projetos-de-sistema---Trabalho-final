@@ -52,7 +52,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
     @Override
     public void atualizar()
     {
-        //this.autorizaUsuario.atualizar();
+     
         
     }
     
@@ -261,8 +261,7 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
 
     private void abreEnviarMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abreEnviarMensagemActionPerformed
         sistema.abreTela(enviarMensagem);
-        
-        //enviarMensagem.setVisible(true);
+    
     }//GEN-LAST:event_abreEnviarMensagemActionPerformed
 
     private void abrirTelaLogActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirTelaLogActionPerformed

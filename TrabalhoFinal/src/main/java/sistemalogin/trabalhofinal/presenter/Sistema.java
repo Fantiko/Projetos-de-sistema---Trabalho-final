@@ -189,12 +189,11 @@ public class Sistema
     
         try
         {
-            System.out.println("teste lista usuario");
             return usuarioDAO.listarUsuarios();
         } catch(Exception e){
             e.printStackTrace();
         }
-        System.out.println("teste lista usuario vazia");
+        
         return null;
     }
     
@@ -229,6 +228,12 @@ public class Sistema
 
     public void rejeitarUsuario(int id)
     {
+        usuarioDAO.excluirUsuario(id);
+        notificarTelas();
+    }
+    
+    public void deletaUsuario(int id){
+       
         usuarioDAO.excluirUsuario(id);
         notificarTelas();
     }

@@ -41,7 +41,7 @@ public class BuscaUsuario extends javax.swing.JInternalFrame implements Observer
 
         for(Usuario u : usuariosAprovados)
         {
-            tabelaBuscaModel.addRow(new Object[]{ u.getNome(), "12/12/2012", u.getNotificacoesRecebidas(), u.getNotificacoesLidas()});
+                tabelaBuscaModel.addRow(new Object[]{ u.getId(), u.getNome(), u.getDataCadastro(), u.getNotificacoesRecebidas(), u.getNotificacoesLidas()});    
         }
     
     
@@ -65,11 +65,11 @@ public class BuscaUsuario extends javax.swing.JInternalFrame implements Observer
 
             },
             new String [] {
-                "Nome", "Data de Cadastro", "Notificações Enviadas", "Notificações Lidas"
+                "ID", "Nome", "Data de Cadastro", "Notificações Enviadas", "Notificações Lidas"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -124,7 +124,11 @@ public class BuscaUsuario extends javax.swing.JInternalFrame implements Observer
     
     //EXCLUIR USUARIO
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
-        
+
+        int linhaSelectionada = tabelaBusca.getSelectedRow();
+        int id = (int) tabelaBusca.getValueAt(linhaSelectionada, 0);
+
+        sistema.deletaUsuario(id);
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     //CADASTRAR NOVO USUARIO
