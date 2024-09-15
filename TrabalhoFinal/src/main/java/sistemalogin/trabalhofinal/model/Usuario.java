@@ -79,7 +79,7 @@ public class Usuario {
             this.estado = new Adm(this);
 
         } else if ("user".equalsIgnoreCase(tipo)) {
-            this.estado = new User(this);
+            this.estado = new User(this, aprovado);
 
         }
 
@@ -105,7 +105,7 @@ public class Usuario {
 
         this.dataCadastro = LocalDate.now();
 
-        this.estado = isPrimeiroCadastro ? new Adm(this) : new User(this);
+        this.estado = isPrimeiroCadastro ? new Adm(this) : new User(this, false);
     }
 
 

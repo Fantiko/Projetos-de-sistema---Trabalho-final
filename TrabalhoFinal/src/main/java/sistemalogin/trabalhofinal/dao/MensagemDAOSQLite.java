@@ -31,7 +31,7 @@ public class MensagemDAOSQLite implements MensagemDAO{
             + " WHERE 1 = 1 ";
 
     private static final String LISTAR_MENSAGENS_USER = " SELECT * FROM Mensagens " +
-            " WHERE idUsuario = ? ";
+            " WHERE usuarioId = ? ";
 
 
     public MensagemDAOSQLite() {

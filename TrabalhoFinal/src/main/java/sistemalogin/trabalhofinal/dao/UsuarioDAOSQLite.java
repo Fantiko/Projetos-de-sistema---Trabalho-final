@@ -35,7 +35,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
             + " WHERE id = ? ";
 
     private static final String LISTAR_CLIENTES = " SELECT * FROM Usuario "
-            + " WHERE 1 = 1 ";
+            + " WHERE tipo = 'user' ";
 
     private static final String CONSULTAR_USUARIO = " SELECT * "
             + " FROM USUARIO "

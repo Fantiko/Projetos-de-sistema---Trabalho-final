@@ -3,9 +3,9 @@ package sistemalogin.trabalhofinal.model;
 public class User extends Estado{
     private boolean aprovado;
 
-    public User(Usuario usuario) {
+    public User(Usuario usuario, Boolean aprovado) {
         super(usuario);
-        this.aprovado = false;
+        this.aprovado = aprovado;
     }
     @Override
     public boolean isAprovado() {
