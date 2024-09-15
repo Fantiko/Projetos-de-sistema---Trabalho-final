@@ -1,27 +1,11 @@
 package sistemalogin.trabalhofinal.model;
 
 public class Adm extends Estado{
-    private boolean aprovado;
+    private final boolean aprovado;
     public Adm(Usuario usuario) {
         super(usuario);
         aprovado = true;
     }
-
-
-
-    @Override
-    public void criarUsuario(){
-
-    }
-    @Override
-    public void aprovarUsuario(){
-
-    }
-    @Override
-    public void deletarUsuario(){
-
-    }
-
 
     @Override
     public boolean isAprovado() {
