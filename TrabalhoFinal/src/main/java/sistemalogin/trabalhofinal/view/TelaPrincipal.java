@@ -33,11 +33,11 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         alterarSenha = new AlteraSenha(sistema);
         autorizaUsuario = new AutorizaUsuario(sistema);
         buscaUsuario = new BuscaUsuario(telaCadastroUsuario, sistema);
-        enviarMensagem = new EnviarMensagem(selecaoUsuarioMensagem, sistema);
         mensagem = new Mensagem(sistema);
         telaLogin = new TelaLogin(telaCadastroUsuario, sistema);
         visualizaMensagem = new VisualizaMensagem(mensagem, sistema);
-        selecaoUsuarioMensagem = new SelecaoUsuarioMensagem(sistema, this.enviarMensagem);
+        enviarMensagem = new EnviarMensagem( sistema, this);
+        selecaoUsuarioMensagem = new SelecaoUsuarioMensagem(sistema, enviarMensagem);
         telaLog = new TelaLog(sistema);
         
         addComponentsToMainPane();
@@ -70,7 +70,13 @@ public class TelaPrincipal extends javax.swing.JFrame implements Observer{
         desktopPane.add(selecaoUsuarioMensagem);
 
     }
+
+    public SelecaoUsuarioMensagem getSelecaoUsuario() {
+        return selecaoUsuarioMensagem;
+    }
     
+    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

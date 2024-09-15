@@ -16,14 +16,14 @@ public class EnviarMensagem extends javax.swing.JInternalFrame implements Observ
     Sistema sistema;
     SelecaoUsuarioMensagem selecaoUsuario;
     private ArrayList<Integer> idListParaEnviar;
+    TelaPrincipal telaPrincipal;
     
             
-    public EnviarMensagem(SelecaoUsuarioMensagem selecaoUsuarioMensagem, Sistema sistema) {
+    public EnviarMensagem(Sistema sistema, TelaPrincipal telaprincipal) {
         initComponents();
         this.sistema = sistema;
-        selecaoUsuario = new SelecaoUsuarioMensagem(sistema, this);
-        selecaoUsuario = selecaoUsuarioMensagem;
-        
+        this.telaPrincipal = telaprincipal;
+        this.idListParaEnviar = new ArrayList<>();
         this.sistema.addTela(this);
     }
     
@@ -107,14 +107,18 @@ public class EnviarMensagem extends javax.swing.JInternalFrame implements Observ
         for(int id : idListParaEnviar)
         {
             Msg novaMsg = new Msg(jTextArea1.getText(), id);
-            
+            sistema.cadastrarMSGUsuario(novaMsg);
         }
         
         idListParaEnviar.clear();
+        setVisible(false);
     }//GEN-LAST:event_btnEnviaMensagemActionPerformed
 
     private void btnDestinatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDestinatarioActionPerformed
+        SelecaoUsuarioMensagem selecaoUsuario = new SelecaoUsuarioMensagem(sistema, this);
+        selecaoUsuario = sistema.telaPrincipal.getSelecaoUsuario();
         selecaoUsuario.setVisible(true);
+        
     }//GEN-LAST:event_btnDestinatarioActionPerformed
 
     public ArrayList<Integer> getIdListParaEnviar()

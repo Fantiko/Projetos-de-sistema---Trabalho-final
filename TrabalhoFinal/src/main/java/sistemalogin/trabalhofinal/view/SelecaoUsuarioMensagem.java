@@ -125,7 +125,8 @@ public class SelecaoUsuarioMensagem extends javax.swing.JInternalFrame implement
 
         for(int i : linhasSelecionadas)
         {
-            enviarMensagemTela.getIdListParaEnviar().add(linhasSelecionadas[i]);
+            int id = (int)tblSelecaousuario.getValueAt(linhasSelecionadas[i], 0);
+            enviarMensagemTela.getIdListParaEnviar().add(id);
         }
         
         setVisible(false);
