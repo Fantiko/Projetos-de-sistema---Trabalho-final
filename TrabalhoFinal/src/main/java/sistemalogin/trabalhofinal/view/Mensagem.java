@@ -87,6 +87,10 @@ public class Mensagem extends javax.swing.JInternalFrame implements Observer{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void escreveMSG(String msg){
+        textoMensagem.setText(msg);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

@@ -223,6 +223,17 @@ public class Sistema
         }
     }
 
+    public Msg consultarMSG(int id){
+        try
+        {
+            return MSGDAO.consultarMensagen(id);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
 
     
