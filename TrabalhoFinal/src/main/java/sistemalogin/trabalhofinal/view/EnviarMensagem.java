@@ -5,6 +5,8 @@
 package sistemalogin.trabalhofinal.view;
 
 import sistemalogin.trabalhofinal.presenter.Sistema;
+import java.util.ArrayList;
+import sistemalogin.trabalhofinal.mensagem.Msg;
 
 /**
  *
@@ -13,11 +15,13 @@ import sistemalogin.trabalhofinal.presenter.Sistema;
 public class EnviarMensagem extends javax.swing.JInternalFrame implements Observer{
     Sistema sistema;
     SelecaoUsuarioMensagem selecaoUsuario;
+    private ArrayList<Integer> idListParaEnviar;
+    
             
     public EnviarMensagem(SelecaoUsuarioMensagem selecaoUsuarioMensagem, Sistema sistema) {
         initComponents();
         this.sistema = sistema;
-        selecaoUsuario = new SelecaoUsuarioMensagem(sistema);
+        selecaoUsuario = new SelecaoUsuarioMensagem(sistema, this);
         selecaoUsuario = selecaoUsuarioMensagem;
         
         this.sistema.addTela(this);
@@ -32,8 +36,6 @@ public class EnviarMensagem extends javax.swing.JInternalFrame implements Observ
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        tituloMensagem = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         btnEnviaMensagem = new javax.swing.JButton();
@@ -41,11 +43,9 @@ public class EnviarMensagem extends javax.swing.JInternalFrame implements Observ
 
         setClosable(true);
         setIconifiable(true);
-        setTitle("Enviar mensagem");
+        setTitle("Enviar Msg");
 
         jLabel1.setText("Destinatário:");
-
-        jLabel2.setText("Título:");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -77,13 +77,10 @@ public class EnviarMensagem extends javax.swing.JInternalFrame implements Observ
                             .addComponent(jScrollPane1)
                             .addContainerGap())
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel2))
+                            .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(tituloMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnDestinatario))))
+                            .addComponent(btnDestinatario)
+                            .addGap(120, 120, 120)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnEnviaMensagem)
                         .addContainerGap())))
@@ -95,11 +92,7 @@ public class EnviarMensagem extends javax.swing.JInternalFrame implements Observ
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(btnDestinatario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(tituloMensagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEnviaMensagem)
@@ -111,20 +104,29 @@ public class EnviarMensagem extends javax.swing.JInternalFrame implements Observ
 
     private void btnEnviaMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviaMensagemActionPerformed
         // TODO add your handling code here:
+        for(int id : idListParaEnviar)
+        {
+            Msg novaMsg = new Msg(jTextArea1.getText(), id);
+            
+        }
+        
+        idListParaEnviar.clear();
     }//GEN-LAST:event_btnEnviaMensagemActionPerformed
 
     private void btnDestinatarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDestinatarioActionPerformed
         selecaoUsuario.setVisible(true);
     }//GEN-LAST:event_btnDestinatarioActionPerformed
 
+    public ArrayList<Integer> getIdListParaEnviar()
+    {
+        return this.idListParaEnviar;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDestinatario;
     private javax.swing.JButton btnEnviaMensagem;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField tituloMensagem;
     // End of variables declaration//GEN-END:variables
 }

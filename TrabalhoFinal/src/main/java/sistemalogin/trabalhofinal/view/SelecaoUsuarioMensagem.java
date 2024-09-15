@@ -4,6 +4,9 @@
  */
 package sistemalogin.trabalhofinal.view;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import sistemalogin.trabalhofinal.model.Usuario;
 import sistemalogin.trabalhofinal.presenter.Sistema;
 
 /**
@@ -12,20 +15,35 @@ import sistemalogin.trabalhofinal.presenter.Sistema;
  */
 public class SelecaoUsuarioMensagem extends javax.swing.JInternalFrame implements Observer{
     Sistema sistema;
+    EnviarMensagem enviarMensagemTela;
     /**
      * Creates new form selecaoUsuarioMensagem
      */
-    public SelecaoUsuarioMensagem(Sistema sistema) {
+    public SelecaoUsuarioMensagem(Sistema sistema, EnviarMensagem enviarMensagemTela) {
         this.sistema = sistema;
         initComponents();
         sistema.addTela(this);
+        this.enviarMensagemTela = enviarMensagemTela;
     }
 
     
     @Override
     public void atualizar()
     {
+        ArrayList<Usuario> usuariosAprovados = sistema.pegarUsuarios();
 
+        if(usuariosAprovados == null)
+        {
+            return;
+        }
+
+        DefaultTableModel tabelaBuscaModel = (DefaultTableModel) tblSelecaousuario.getModel();
+        tabelaBuscaModel.setRowCount(0);
+
+        for(Usuario u : usuariosAprovados)
+        {
+            tabelaBuscaModel.addRow(new Object[]{ u.getId(), u.getNome(), u.getDataCadastro(), u.getNotificacoesRecebidas(), u.getNotificacoesLidas()});    
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,6 +120,14 @@ public class SelecaoUsuarioMensagem extends javax.swing.JInternalFrame implement
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+
+        int[] linhasSelecionadas = tblSelecaousuario.getSelectedRows();
+
+        for(int i : linhasSelecionadas)
+        {
+            enviarMensagemTela.getIdListParaEnviar().add(linhasSelecionadas[i]);
+        }
+        
         setVisible(false);
     }//GEN-LAST:event_btnSalvarActionPerformed
 
