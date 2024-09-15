@@ -131,7 +131,17 @@ public class AutorizaUsuario extends javax.swing.JInternalFrame implements Obser
         int linhaSelectionada = tabelaAutoriza.getSelectedRow();
         int id = (int)tabelaAutoriza.getValueAt(linhaSelectionada, 0);
 
-        sistema.autorizarUsuario(new Usuario(id));
+        Usuario usuario = null;
+        try
+        {
+            usuario = sistema.getUsuarioDAO().consultarUsuario(id);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            return;
+        }
+
+        sistema.autorizarUsuario(usuario);
     }//GEN-LAST:event_autorizaUsuarioActionPerformed
 
 

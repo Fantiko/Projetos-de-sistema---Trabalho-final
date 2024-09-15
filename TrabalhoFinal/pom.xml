@@ -49,7 +49,7 @@
         <dependency>
             <groupId>com.github.Provete</groupId>
             <artifactId>loggertrabalhofinal</artifactId>
-            <version>0dae7ac0e5</version>
+            <version>master-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

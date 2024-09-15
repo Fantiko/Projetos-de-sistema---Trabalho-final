@@ -19,6 +19,8 @@ import java.util.List;
 import sistemalogin.trabalhofinal.view.TelaPrincipal;
 import org.example.Logger.Logger;
 import org.example.Logger.JSONLogger;
+import org.example.Logger.CSVLogger;
+import org.example.Logger.Operacao;
 
 import javax.swing.*;
 
@@ -27,7 +29,6 @@ import sistemalogin.trabalhofinal.view.*;
 
 public class Sistema 
 {
-    private static final org.slf4j.Logger log = LoggerFactory.getLogger(Sistema.class);
     private ArrayList<Observer> telas;
     private Logger logger;
     private Usuario usuarioLogado;
@@ -83,6 +84,11 @@ public class Sistema
     public void log(Operacao operacao, Usuario usuarioAfetado)
     {
         logger.log(operacao, usuarioAfetado.getNome(), LocalDateTime.now(), this.usuarioLogado.getNome());
+    }
+
+    public void logError(String errorMensagem, Operacao operacao, Usuario usuarioAfetado)
+    {
+        logger.logErro(errorMensagem, operacao, usuarioAfetado.getNome(), LocalDateTime.now(), this.usuarioLogado.getNome());
     }
 
     public void logar(String nome, String senha, TelaLogin telalogin)
@@ -156,7 +162,6 @@ public class Sistema
         try
         {
             this.criarUsuarioCommand.executar(usuario);
-            notificarTelas();
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -177,7 +182,6 @@ public class Sistema
             abreOpcao.setVisible(true);
         }
     }
-    
 
     public ArrayList<Usuario> pegarUsuariosNaoAprovados()
     {
@@ -215,48 +219,69 @@ public class Sistema
     }
 
     public void cadastrarMSGUsuario(Msg msg){
+
+        Usuario usuario = null;
+        try
+        {
+            usuario = usuarioDAO.consultarUsuario(msg.getIdUsuario());
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
         try
         {
             MSGDAO.cadastrarMensagens(msg);
+            log(Operacao.ENVIO_NOTIFICACAO, usuario);
         } catch(Exception e){
+            logError("Erro: Não foi possivel cadastrar uma nova mensagem", Operacao.ENVIO_NOTIFICACAO, usuario);
             e.printStackTrace();
         }
     }
 
-    public Msg consultarMSG(int id){
+    public Msg consultarMSG(int id) throws Exception
+    {
         try
         {
             return MSGDAO.consultarMensagen(id);
         } catch(Exception e){
             e.printStackTrace();
+            throw new Exception("Erro: Não foi possivel ler a mensagem");
         }
-
-        return null;
     }
 
-
-
-    
     public void alterarSenha(String senhaNova, String senhaAtual){
         if(usuarioLogado.getSenha().equals(senhaAtual)){
             
             if (this.isSenhaValida(senhaNova)) {
                 usuarioLogado.setSenha(senhaNova);
-                usuarioDAO.alterarUsuario(usuarioLogado.getId(), usuarioLogado);
+
+                try
+                {
+                    usuarioDAO.alterarUsuario(usuarioLogado.getId(), usuarioLogado);
+                    log(Operacao.ALTERACAO, usuarioLogado);
+                } catch (Exception e)
+                {
+                    logError(e.getMessage(), Operacao.ALTERACAO, usuarioLogado);
+                    e.printStackTrace();
+                    return;
+                }
+
+                log(Operacao.ALTERACAO_SENHA, usuarioLogado);
                 
                 JOptionPane.showMessageDialog(telaPrincipal,
                         "Senha alterada.",
                         "Senha Alterada",
-                        JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.INFORMATION_MESSAGE);
             }
                 
         }
         else{
-                JOptionPane.showMessageDialog(telaPrincipal,
-                        "Senha atual incorreta.",
-                        "Erro",
-                        JOptionPane.ERROR_MESSAGE);  
-        
+            JOptionPane.showMessageDialog(telaPrincipal,
+                    "Senha atual incorreta.",
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+            logError("Erro: Senha atual incorreta", Operacao.ALTERACAO_SENHA, usuarioLogado);
         }       
     }
 
@@ -266,8 +291,10 @@ public class Sistema
         {
             this.autorizarUsuarioCommand.executar(usuario);
             notificarTelas();
+            log(Operacao.AUTORIZACAO_USUARIO, usuario);
         } catch (Exception e)
         {
+            logError("Erro: Não foi possivel autorizar o usuario", Operacao.AUTORIZACAO_USUARIO, usuario);
             e.printStackTrace();
         }
     }
@@ -295,9 +322,25 @@ public class Sistema
     }
     
     public void deletaUsuario(int id){
-       
-        usuarioDAO.excluirUsuario(id);
-        notificarTelas();
+        Usuario usuario = null;
+        try
+        {
+             usuario = usuarioDAO.consultarUsuario(id);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        try
+        {
+            usuarioDAO.excluirUsuario(id);
+            notificarTelas();
+            log(Operacao.EXCLUSAO, usuario);
+        } catch (Exception e)
+        {
+            logError(e.getMessage(), Operacao.EXCLUSAO, usuario);
+            e.printStackTrace();
+        }
     }
     
     

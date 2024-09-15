@@ -8,8 +8,8 @@ public interface UsuarioDAO
 {
     void cadastrarUsuario(Usuario usuario);
     Usuario consultarUsuario(int id) throws Exception;
-    void alterarUsuario(int id, Usuario usuario);
-    void excluirUsuario(int id);
+    void alterarUsuario(int id, Usuario usuario) throws Exception;
+    void excluirUsuario(int id) throws Exception;
     ArrayList<Usuario> listarUsuarios() throws Exception;
     ArrayList<Usuario> listarUsuariosNaoAprovados() throws Exception;
     Usuario logarUsuario(String nomeUsuario, String senhaUsuario) throws Exception;

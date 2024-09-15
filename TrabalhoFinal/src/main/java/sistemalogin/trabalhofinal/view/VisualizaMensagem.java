@@ -4,6 +4,7 @@
  */
 package sistemalogin.trabalhofinal.view;
 
+import org.example.Logger.Operacao;
 import sistemalogin.trabalhofinal.mensagem.Msg;
 import sistemalogin.trabalhofinal.model.Usuario;
 import sistemalogin.trabalhofinal.presenter.Sistema;
@@ -111,11 +112,25 @@ public class VisualizaMensagem extends javax.swing.JInternalFrame implements Obs
     private void lerMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lerMensagemActionPerformed
         int linhaSelectionada = tabelaMensagem.getSelectedRow();
         int id = (int) tabelaMensagem.getValueAt(linhaSelectionada, 0);
+        Msg msg = null;
+        Usuario usuario = null;
 
-        Msg msg = sistema.consultarMSG(id);
+        try
+        {
+            msg = sistema.consultarMSG(id);
+            usuario = sistema.getUsuarioDAO().consultarUsuario(id);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            sistema.logError(e.getMessage(), Operacao.LEITURA_NOTIFICACAO, usuario);
+        }
+
         mensagem.escreveMSG(msg.getMensagem());
+        sistema.log(Operacao.LEITURA_NOTIFICACAO, usuario);
 
         mensagem.setVisible(true);
+
+
     }//GEN-LAST:event_lerMensagemActionPerformed
 
 

@@ -97,7 +97,18 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements O
     {//GEN-FIRST:event_salvarUsuarioActionPerformed
         String novoNome = nomeUsuario.getText();
         String novaSenha = senhaUsuario.getText();
-        sistema.cadastrarUsuario(novoNome, novaSenha);
+        boolean isPrimeiroUsuario = false;
+
+        try
+        {
+            isPrimeiroUsuario = sistema.getUsuarioDAO().isEmpty();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+            return;
+        }
+
+        sistema.cadastrarUsuario(new Usuario(novoNome, novaSenha, isPrimeiroUsuario));
 
 
         nomeUsuario.setText("");

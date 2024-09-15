@@ -171,7 +171,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     }
 
     @Override
-    public void alterarUsuario(int id, Usuario usuario)
+    public void alterarUsuario(int id, Usuario usuario) throws Exception
     {
         Connection connection = Conexao.getInstance().abrirConexao();
 
@@ -195,6 +195,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
         } catch (SQLException e)
         {
             e.printStackTrace();
+            throw new Exception("Erro: Não foi possivel alterar o usuário");
         } finally
         {
             fecharConexao();
@@ -204,7 +205,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
     }
 
     @Override
-    public void excluirUsuario(int id)
+    public void excluirUsuario(int id) throws Exception
     {
         Connection connection = Conexao.getInstance().abrirConexao();
 
@@ -223,6 +224,7 @@ public class UsuarioDAOSQLite implements UsuarioDAO
         } catch (SQLException e)
         {
             e.printStackTrace();
+            throw new Exception("Erro: Não foi possivel excluir o usuario");
         } finally
         {
             fecharConexao();

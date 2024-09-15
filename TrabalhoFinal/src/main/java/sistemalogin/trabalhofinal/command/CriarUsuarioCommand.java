@@ -14,27 +14,20 @@ public class CriarUsuarioCommand extends Command
     @Override
     public void executar(Usuario usuario) throws Exception
     {
-        if(sistema.getUsuarioLogado().getNomeEstado().equals("adm"))
+        if(!sistema.isSenhaValida(usuario.getSenha()))
         {
-            if(!sistema.isSenhaValida(usuario.getSenha()))
-            {
-                return;
-            }
+            return;
+        }
 
-            try
-            {
-                boolean isPrimeiroUsuario = sistema.getUsuarioDAO().isEmpty();
-                //boolean isPrimeiroUsuario = false;
-
-                sistema.getUsuarioDAO().cadastrarUsuario(usuario);
-
-            } catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        } else
+        try
         {
-            throw new Exception("Permissão negada.");
+            boolean isPrimeiroUsuario = sistema.getUsuarioDAO().isEmpty();
+
+            sistema.getUsuarioDAO().cadastrarUsuario(usuario);
+
+        } catch (Exception e)
+        {
+            e.printStackTrace();
         }
     }
 }
