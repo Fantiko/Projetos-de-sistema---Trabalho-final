@@ -19,6 +19,8 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements O
         initComponents();
         this.sistema = sistema;
         
+        this.sistema.addTela(this);
+        
     }
     @Override
     public void atualizar(){}

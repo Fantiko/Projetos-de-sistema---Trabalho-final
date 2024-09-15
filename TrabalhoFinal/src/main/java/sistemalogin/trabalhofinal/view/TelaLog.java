@@ -19,6 +19,8 @@ public class TelaLog extends javax.swing.JInternalFrame implements Observer{
     {
         this.sistema = sistema;
         initComponents();
+        
+        this.sistema.addTela(this);
     }
 
     @Override

@@ -14,11 +14,13 @@ public class EnviarMensagem extends javax.swing.JInternalFrame implements Observ
     Sistema sistema;
     SelecaoUsuarioMensagem selecaoUsuario;
             
-    public EnviarMensagem(SelecaoUsuarioMensagem selecaoUsuarioMensagem) {
+    public EnviarMensagem(SelecaoUsuarioMensagem selecaoUsuarioMensagem, Sistema sistema) {
         initComponents();
         this.sistema = sistema;
-        selecaoUsuario = new SelecaoUsuarioMensagem();
+        selecaoUsuario = new SelecaoUsuarioMensagem(sistema);
         selecaoUsuario = selecaoUsuarioMensagem;
+        
+        this.sistema.addTela(this);
     }
     
     @Override
