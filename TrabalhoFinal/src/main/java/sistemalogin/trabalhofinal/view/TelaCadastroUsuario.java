@@ -4,6 +4,7 @@
  */
 package sistemalogin.trabalhofinal.view;
 import com.pss.senha.validacao.ValidadorSenha;
+import sistemalogin.trabalhofinal.model.Usuario;
 import sistemalogin.trabalhofinal.presenter.Sistema;
 
 import java.util.ArrayList;
@@ -96,7 +97,6 @@ public class TelaCadastroUsuario extends javax.swing.JInternalFrame implements O
     {//GEN-FIRST:event_salvarUsuarioActionPerformed
         String novoNome = nomeUsuario.getText();
         String novaSenha = senhaUsuario.getText();
-
         sistema.cadastrarUsuario(novoNome, novaSenha);
 
 

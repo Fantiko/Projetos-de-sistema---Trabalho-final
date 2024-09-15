@@ -4,7 +4,12 @@
  */
 package sistemalogin.trabalhofinal.view;
 
+import sistemalogin.trabalhofinal.mensagem.Msg;
+import sistemalogin.trabalhofinal.model.Usuario;
 import sistemalogin.trabalhofinal.presenter.Sistema;
+
+import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,7 +29,22 @@ public class VisualizaMensagem extends javax.swing.JInternalFrame implements Obs
     }
 
     @Override
-    public void atualizar(){}
+    public void atualizar(){
+        ArrayList<Msg> listaMensagens = sistema.ListarMSGUsuario();
+
+        if (listaMensagens == null){
+            return;
+        }
+
+        DefaultTableModel tabelaMSGModel = (DefaultTableModel) tabelaMensagem.getModel();
+        tabelaMSGModel.setRowCount(0);
+
+        for(Msg msg : listaMensagens)
+        {
+            tabelaMSGModel.addRow(new Object[]{ msg.getId(), msg.isLida()});
+        }
+
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -89,6 +109,12 @@ public class VisualizaMensagem extends javax.swing.JInternalFrame implements Obs
     }// </editor-fold>//GEN-END:initComponents
 
     private void lerMensagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lerMensagemActionPerformed
+        int linhaSelectionada = tabelaMensagem.getSelectedRow();
+        int id = (int) tabelaMensagem.getValueAt(linhaSelectionada, 0);
+
+        Msg msg = sistema.consultarMSG(id);
+        mensagem.escreveMSG(msg.getMensagem());
+
         mensagem.setVisible(true);
     }//GEN-LAST:event_lerMensagemActionPerformed
 
