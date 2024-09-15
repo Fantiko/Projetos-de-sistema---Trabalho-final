@@ -13,7 +13,7 @@ public class Usuario {
     private String nome;
     private String senha;
 
-    private final LocalDate dataCadastro;
+    private LocalDate dataCadastro = null;
 
     private double notificacoesRecebidas;
     private double notificacoesLidas;
@@ -87,6 +87,11 @@ public class Usuario {
 
     }
 
+    public Usuario(int id)
+    {
+        this.id = id;
+    }
+
     public Usuario(String nome, String senha, boolean isPrimeiroCadastro)
     {
         this.nome = nome;
@@ -119,18 +124,6 @@ public class Usuario {
 
     public String getNomeEstado() {
         return estado.getNomeEstado();
-    }
-
-    public void criarUsuario(){
-        estado.criarUsuario();
-    }
-
-    public void aprovarUsuario(){
-        estado.aprovarUsuario();
-    }
-
-    public void deletarUsuario(){
-        estado.deletarUsuario();
     }
 
     public boolean isAprovado() {
