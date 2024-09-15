@@ -4,8 +4,10 @@ import com.pss.senha.validacao.ValidadorSenha;
 import org.example.Logger.Operacao;
 import org.slf4j.LoggerFactory;
 import sistemalogin.trabalhofinal.dao.DB;
+import sistemalogin.trabalhofinal.dao.MensagemDAOSQLite;
 import sistemalogin.trabalhofinal.dao.UsuarioDAO;
 import sistemalogin.trabalhofinal.dao.UsuarioDAOSQLite;
+import sistemalogin.trabalhofinal.mensagem.Msg;
 import sistemalogin.trabalhofinal.model.Usuario;
 import sistemalogin.trabalhofinal.view.Observer;
 
@@ -29,6 +31,7 @@ public class Sistema
     private Logger logger;
     private Usuario usuarioLogado;
     private UsuarioDAO usuarioDAO;
+    private MensagemDAOSQLite MSGDAO;
     public TelaPrincipal telaPrincipal;
 
     public Sistema() 
@@ -38,6 +41,7 @@ public class Sistema
         telaPrincipal = new TelaPrincipal(this);
         logger = new JSONLogger();
         usuarioDAO = new UsuarioDAOSQLite();
+        MSGDAO = new MensagemDAOSQLite();
         addTela(telaPrincipal);
     }
     
@@ -198,6 +202,29 @@ public class Sistema
         
         return null;
     }
+
+    public ArrayList<Msg> ListarMSGUsuario(){
+        try
+        {
+            return MSGDAO.listarMensagensUsuario(this.usuarioLogado.getId());
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public void cadastrarMSGUsuario(Msg msg){
+        try
+        {
+            MSGDAO.cadastrarMensagens(msg);
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
+
+
     
     public void alterarSenha(String senhaNova, String senhaAtual){
         if(usuarioLogado.getSenha().equals(senhaAtual)){
