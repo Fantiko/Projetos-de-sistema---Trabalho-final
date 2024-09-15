@@ -100,7 +100,7 @@ public class Usuario {
 
         this.dataCadastro = LocalDate.now();
 
-        this.estado = isPrimeiroCadastro ? new Adm(this) : new User(this);
+        this.estado = isPrimeiroCadastro ? new Adm(this) : new User(this, false);
     }
 
 
