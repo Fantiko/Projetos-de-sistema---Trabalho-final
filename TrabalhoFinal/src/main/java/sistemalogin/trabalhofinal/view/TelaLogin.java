@@ -37,7 +37,6 @@ public class TelaLogin extends javax.swing.JInternalFrame implements Observer{
         acessoUsuario = new javax.swing.JButton();
         novoUsuario = new javax.swing.JButton();
 
-        setClosable(true);
         setIconifiable(true);
         setTitle("Login");
 

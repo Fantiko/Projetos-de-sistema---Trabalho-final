@@ -41,7 +41,6 @@ public class EnviarMensagem extends javax.swing.JInternalFrame implements Observ
         btnEnviaMensagem = new javax.swing.JButton();
         btnDestinatario = new javax.swing.JButton();
 
-        setClosable(true);
         setIconifiable(true);
         setTitle("Enviar Msg");
 

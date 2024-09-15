@@ -36,7 +36,6 @@ public class AlteraSenha extends javax.swing.JInternalFrame implements Observer{
         jLabel2 = new javax.swing.JLabel();
         senhaAtual = new javax.swing.JTextField();
 
-        setClosable(true);
         setIconifiable(true);
         setTitle("Nova Senha");
 

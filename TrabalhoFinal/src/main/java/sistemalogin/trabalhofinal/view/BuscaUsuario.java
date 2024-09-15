@@ -56,7 +56,6 @@ public class BuscaUsuario extends javax.swing.JInternalFrame implements Observer
         btnExcluir = new javax.swing.JButton();
         btnNovo = new javax.swing.JButton();
 
-        setClosable(true);
         setIconifiable(true);
         setTitle("Buscar por Usuários");
 
