@@ -3,6 +3,7 @@ package sistemalogin.trabalhofinal.presenter;
 import com.pss.senha.validacao.ValidadorSenha;
 import org.example.Logger.Operacao;
 import org.slf4j.LoggerFactory;
+import sistemalogin.trabalhofinal.dao.DB;
 import sistemalogin.trabalhofinal.dao.UsuarioDAO;
 import sistemalogin.trabalhofinal.dao.UsuarioDAOSQLite;
 import sistemalogin.trabalhofinal.model.Usuario;
@@ -32,6 +33,7 @@ public class Sistema
 
     public Sistema() 
     {
+        DB.main();
         telas = new ArrayList<Observer>();
         telaPrincipal = new TelaPrincipal(this);
         logger = new JSONLogger();
