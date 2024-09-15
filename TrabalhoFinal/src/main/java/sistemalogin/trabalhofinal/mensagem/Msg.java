@@ -33,13 +33,16 @@ public class Msg {
         this.mensagem = mensagem;
     }
 
-    public Msg(String mensagem, int id, int idUsuario) {
+    public Msg(String mensagem, int idUsuario) {
         this.mensagem = mensagem;
         this.lida = false;
+        this.idUsuario = idUsuario;
     }
 
     public Msg(String mensagem, Boolean lida, int id, int idUsuario) {
         this.mensagem = mensagem;
         this.lida = lida;
+        this.id = id;
+        this.idUsuario = idUsuario;
     }
 }
