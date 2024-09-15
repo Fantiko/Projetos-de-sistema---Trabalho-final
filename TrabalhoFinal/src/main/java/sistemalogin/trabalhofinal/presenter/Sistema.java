@@ -3,6 +3,7 @@ package sistemalogin.trabalhofinal.presenter;
 import com.pss.senha.validacao.ValidadorSenha;
 import org.example.Logger.Operacao;
 import org.slf4j.LoggerFactory;
+import sistemalogin.trabalhofinal.command.*;
 import sistemalogin.trabalhofinal.dao.DB;
 import sistemalogin.trabalhofinal.dao.MensagemDAOSQLite;
 import sistemalogin.trabalhofinal.dao.UsuarioDAO;
@@ -20,7 +21,7 @@ import org.example.Logger.Logger;
 import org.example.Logger.JSONLogger;
 
 import javax.swing.*;
-import javax.swing.JLabel;
+
 import sistemalogin.trabalhofinal.view.*;
 
 
@@ -34,7 +35,12 @@ public class Sistema
     private MensagemDAOSQLite MSGDAO;
     public TelaPrincipal telaPrincipal;
 
-    public Sistema() 
+    private final AutorizarUsuarioCommand autorizarUsuarioCommand;
+    private final CriarUsuarioCommand criarUsuarioCommand;
+    private final DeletarUsuarioCommand deletarUsuarioCommand;
+    private final RejeitarUsuarioCommand rejeitarUsuarioCommand;
+
+    public Sistema()
     {
         DB.main();
         telas = new ArrayList<Observer>();
@@ -43,6 +49,11 @@ public class Sistema
         usuarioDAO = new UsuarioDAOSQLite();
         MSGDAO = new MensagemDAOSQLite();
         addTela(telaPrincipal);
+
+        autorizarUsuarioCommand = new AutorizarUsuarioCommand(this);
+        criarUsuarioCommand = new CriarUsuarioCommand(this);
+        deletarUsuarioCommand = new DeletarUsuarioCommand(this);
+        rejeitarUsuarioCommand = new RejeitarUsuarioCommand(this);
     }
     
 
@@ -140,27 +151,16 @@ public class Sistema
         return isSenhaValida;
     }
 
-    public void cadastrarUsuario(String nome, String senha)
+    public void cadastrarUsuario(Usuario usuario)
     {
-        if(!isSenhaValida(senha))
-        {
-            return;
-        }
-
         try
         {
-            boolean isPrimeiroUsuario = usuarioDAO.isEmpty();
-            //boolean isPrimeiroUsuario = false;
-
-            Usuario novoUsuario = new Usuario(nome, senha, isPrimeiroUsuario);
-            usuarioDAO.cadastrarUsuario(novoUsuario);
-            this.notificarTelas();
-            
+            this.criarUsuarioCommand.executar(usuario);
+            notificarTelas();
         } catch (Exception e)
         {
             e.printStackTrace();
         }
-
     }
     
     public void abreTela(EnviarMensagem Enviarmensagem){
@@ -249,16 +249,38 @@ public class Sistema
         }       
     }
 
-    public void autorizarUsuario(int id)
+    public void autorizarUsuario(Usuario usuario)
     {
-        usuarioDAO.autorizarUsuario(id);
-        notificarTelas();
+        try
+        {
+            this.autorizarUsuarioCommand.executar(usuario);
+            notificarTelas();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
-    public void rejeitarUsuario(int id)
+    public void rejeitarUsuario(Usuario usuario)
     {
-        usuarioDAO.excluirUsuario(id);
-        notificarTelas();
+        try
+        {
+            this.rejeitarUsuarioCommand.executar(usuario);
+            notificarTelas();
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
+    public UsuarioDAO getUsuarioDAO()
+    {
+        return usuarioDAO;
+    }
+
+    public Usuario getUsuarioLogado()
+    {
+        return this.usuarioLogado;
     }
     
     public void deletaUsuario(int id){
