@@ -45,4 +45,12 @@ public class Msg {
         this.id = id;
         this.idUsuario = idUsuario;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
